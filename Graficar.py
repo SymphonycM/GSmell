@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-
+#Variables
 def main():
     numUsuario = int(input("Numero de usuarios: "))
     datos = []
