@@ -4,17 +4,10 @@ import datetime
 from pymongo import MongoClient
 
 
-client = pymongo.MongoClient("mongodb+srv://GSmell:queremosplata@cluster0-sij7n.mongodb.net/test?retryWrites=true")
+client = pymongo.MongoClient("mongodb+srv://GSmell:gsmellalce1@cluster0-sgq75.mongodb.net/test?retryWrites=true")
 db=client.GSmell
 evaluados=db.Evaluados
 
-
-
-
-
-
-# db=client.GSmell
-# evaluados=db.Evaluados
 ###### Crear una base de datos en Mongo llamada "GSmell", dentro de ella, una colección llamada "Evaluados" (con las mayúsculas)
 
 
@@ -58,14 +51,14 @@ evaluados=db.Evaluados
 ###### Aquí guarda todos los documentos en una lista llamada "lista", cada posición es otra lista en la que está la información de cada paciente
 ###### La lista de cada paciente está en el orden: nombre, sexo, edad, fecha, porcentaje de estrés, porc. de relajación, porc. de otro.
 
-numero=evaluados.distinct("_id")
-evlas=evaluados.find()
-lista=[[]for x in range(0, len(numero))]
-cont=0
-for i in evlas:
-    lista[cont]=[i["nombre"],i["sexo"],i["edad"],i["fecha"],i["pestres"],i["prel"],i["potro"]]
-    cont=cont+1
-print(lista)
+#numero=evaluados.distinct("_id")
+#evlas=evaluados.find()
+#lista=[[]for x in range(0, len(numero))]
+#cont=0
+#for i in evlas:
+#    lista[cont]=[i["nombre"],i["sexo"],i["edad"],i["fecha"],i["pestres"],i["prel"],i["potro"]]
+#    cont=cont+1
+#print(lista)
 
 
 
