@@ -1,0 +1,211 @@
+WindowManager:
+    MainWindow:
+    SecondWindow:
+    ThirdWindow:
+<Pop>:
+    Label:
+        text: "Paciente registrado"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x": 0.2, 'y':0.5}
+
+
+<MainWindow>
+    name: "Menu Principal"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size 
+            source: 'GSmellLogo.png'
+
+    Button:
+        text: "Lista Pacientes"
+        font_size: 28
+        size_hint: 0.3, 0.3
+        pos_hint: {"x":0.1, "y":0.35}
+        on_release: 
+            app.root.current = "Lista Pacientes"
+            root.manager.transition.direction = "right"
+    Button:
+        text: "Crear paciente"
+        font_size: 28
+        size_hint: 0.3, 0.3
+        pos_hint: {"x":0.6, "y":0.35}
+        on_release: 
+            app.root.current = "Crear paciente"
+            root.manager.transition.direction = "left"
+
+<SecondWindow>
+    name: "Lista Pacientes"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size 
+            source: 'GSmellLogo.png'
+
+    Button:
+        text: "Volver"
+        on_release: 
+            app.root.current = "Menu Principal"
+            root.manager.transition.direction = "left"
+            
+
+<ThirdWindow>
+    
+    name: "Crear paciente"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size 
+            source: 'GSmellLogo.png'
+
+    Button:
+        text: "Volver"
+        size_hint: 0.2, 0.05
+        pos_hint: {"x":0.2}
+        on_release: 
+            app.root.current = "Menu Principal"
+            root.manager.transition.direction = "right"
+    
+    Button:
+        text: "Agregar"
+        size_hint: 0.2, 0.05
+        pos_hint: {"x":0.6}
+        on_release: 
+            #app.root.current = "Menu Principal"
+            root.manager.transition.direction = "right"
+            root.btn()
+
+    
+    
+
+    GridLayout:
+        cols: 2
+        col_default_width: 300
+        col_force_default: True
+        row_default_height: 80
+        row_force_default: True
+        spacing: 0.5,0.5
+        pos_hint: {"x": 0.09, 'y':-0.3}
+        
+
+        Label:
+            text: "Nombre: "
+            font_size: 20
+            color: 0.3,0.6,0.7,1
+            pos_hint: {"x":1, "y":2}
+            size_hint: 0.3,0.2
+
+            canvas.before:
+                Color:
+                    rgba: 2, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                
+        TextInput:
+            multiline: False
+            size_hint: 0.3, 0.2
+            font_size: 18
+
+        Label:
+            text: "Edad: "
+            font_size: 20
+            color: 0.3,0.6,0.7,1
+            pos_hint: {"x":1, "y":2}
+
+            canvas.before:
+                Color:
+                    rgba: 2, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                
+        TextInput:
+            multiline: False
+            size_hint: 0.3, 0.2
+            font_size: 18
+            
+        Label:
+            text: "Sexo: "
+            font_size: 20
+            color: 0.3,0.6,0.7,1
+            pos_hint: {"x":1, "y":2}
+
+            canvas.before:
+                Color:
+                    rgba: 2, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                
+        TextInput:
+            multiline: False
+            size_hint: 0.3, 0.2
+            font_size: 18
+
+        Label:
+            text: "Fecha: "
+            font_size: 20
+            color: 0.3,0.6,0.7,1
+            pos_hint: {"x":1, "y":2}
+
+            canvas.before:
+                Color:
+                    rgba: 2, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                
+        TextInput:
+            multiline: False
+            size_hint: 0.3, 0.2
+            font_size: 18       
+
+
+    GridLayout:
+        cols: 2
+       
+        col_default_width: 300
+        col_force_default: True
+        row_default_height: 80
+        row_force_default: True
+        spacing: 0.5,0.5
+        pos_hint: {"x": 0.5, 'y':-0.3}
+        
+
+        Label:
+            text: "Frecuencia previa: "
+            font_size: 20
+            color: 0.3,0.6,0.7,1
+            pos_hint: {"x":1, "y":2}
+            size_hint: 0.3,0.2
+
+            canvas.before:
+                Color:
+                    rgba: 2, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                
+        TextInput:
+            multiline: False
+            size_hint: 0.3, 0.2
+            font_size: 18
+
+        Label:
+            text: "Frecuencia posterior: "
+            font_size: 20
+            color: 0.3,0.6,0.7,1
+            pos_hint: {"x":1, "y":2}
+
+            canvas.before:
+                Color:
+                    rgba: 2, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                
+        TextInput:
+            multiline: False
+            size_hint: 0.3, 0.2
+            font_size: 18                 
