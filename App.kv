@@ -2,6 +2,7 @@ WindowManager:
     MainWindow:
     SecondWindow:
     ThirdWindow:
+    
 <Pop>:
     Label:
         text: "Paciente registrado"
@@ -50,8 +51,15 @@ WindowManager:
             
 
 <ThirdWindow>
-    
+
+
     name: "Crear paciente"
+
+    nombre: nombre
+    edad: edad
+    id_: id
+    sexo: sexo
+    fecha: fecha
     canvas.before:
         Rectangle:
             pos: self.pos
@@ -74,6 +82,8 @@ WindowManager:
             #app.root.current = "Menu Principal"
             root.manager.transition.direction = "right"
             root.btn()
+            root.insert()
+            
 
     
     
@@ -87,7 +97,7 @@ WindowManager:
         spacing: 0.5,0.5
         pos_hint: {"x": 0.09, 'y':-0.3}
         
-
+        
         Label:
             text: "Nombre: "
             font_size: 20
@@ -103,6 +113,27 @@ WindowManager:
                     size: self.size
                 
         TextInput:
+            id:nombre
+            multiline: False
+            size_hint: 0.3, 0.2
+            font_size: 18
+        
+        Label:
+            text: "ID: "
+            font_size: 20
+            color: 0.3,0.6,0.7,1
+            pos_hint: {"x":1, "y":2}
+            size_hint: 0.3,0.2
+
+            canvas.before:
+                Color:
+                    rgba: 2, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                
+        TextInput:
+            id:id_
             multiline: False
             size_hint: 0.3, 0.2
             font_size: 18
@@ -121,6 +152,7 @@ WindowManager:
                     size: self.size
                 
         TextInput:
+            id:edad
             multiline: False
             size_hint: 0.3, 0.2
             font_size: 18
@@ -139,6 +171,7 @@ WindowManager:
                     size: self.size
                 
         TextInput:
+            id:sexo
             multiline: False
             size_hint: 0.3, 0.2
             font_size: 18
@@ -157,10 +190,10 @@ WindowManager:
                     size: self.size
                 
         TextInput:
+            id:fecha
             multiline: False
             size_hint: 0.3, 0.2
-            font_size: 18       
-
+            font_size: 18      
 
     GridLayout:
         cols: 2
@@ -208,4 +241,6 @@ WindowManager:
         TextInput:
             multiline: False
             size_hint: 0.3, 0.2
-            font_size: 18                 
+            font_size: 18
+
+                     
