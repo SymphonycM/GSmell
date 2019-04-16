@@ -1,0 +1,90 @@
+<Pantalla>:
+    id: "Pantalla"
+    orientation: 'vertical'
+    rows: 2
+    color: 1,1,1,1
+    BoxLayout:
+        orientation: 'horizontal'
+        id: "upperBar"
+        space: 40
+        size_hint: 1, .05
+        Button:
+            id: "menuButton"
+            text: "1"
+            size_hint: .07, 1
+            on_press: root.mostrar_menu()
+        Label:
+            id: "textoPantalla"
+            text: "Pantalla x"
+            font_color: 0,1,0,1
+            size_hint: .15, 1
+        BoxLayout:
+            
+        Button:
+            id: "srchButton"
+            text: "Srch"
+            size_hint: .07, 1
+
+    
+    
+    
+    
+    
+    
+    
+    Sm:
+        id: "Screens"
+        Brain:
+        Experimentos:
+        Personas:
+        Aromas:
+
+   
+
+<MenuPop>:
+    title: "Menu"
+    size_hint: .2, 1
+    pos_hint: {'x': 0, 'top': 1}
+    pos: 0, 500
+    BoxLayout:
+        orientation: 'vertical'
+        space: 10
+        Button:
+            text:"Experimentos"
+            size_hint: 1, .07
+        Button:
+            text:"Personas"
+            size_hint: 1, .07
+        Button:
+            text: "Aromas"
+            size_hint: 1, .07
+        BoxLayout:
+
+        Button:
+            text: "Salir"
+            size_hint: 1, .07
+
+
+<Brain>:
+    name: 'Brain'
+    Button:
+        text: "Goto Exp"
+        on_press: root.manager.current='Experimentos'
+
+<Experimentos>:
+    name: 'Experimentos'
+    Button:
+        text: "Melo"
+        on_press: root.manager.current='Personas'
+
+<Personas>:
+    name: 'Personas'
+    Button:
+        text: "Goto Aromas"
+        on_press: root.manager.current='Aromas'
+
+<Aromas>:
+    name:'Aromas'
+    Button:
+        text: "Goto Brain"
+        on_press: root.manager.current='Brain'
