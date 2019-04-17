@@ -1,48 +1,95 @@
-<Pantalla>:
-    id: "Pantalla"
-    orientation: 'vertical'
-    rows: 2
-    color: 1,1,1,1
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+#:import CardTransition kivy.uix.screenmanager.CardTransition
+#:import SwapTransition kivy.uix.screenmanager.SwapTransition
+#:import WipeTransition kivy.uix.screenmanager.WipeTransition
+#:import FallOutTransition kivy.uix.screenmanager.FallOutTransition
+#:import RiseInTransition kivy.uix.screenmanager.RiseInTransition
+<PantallaScreen>:
+    name: 'PantallaScreen'
     BoxLayout:
-        orientation: 'horizontal'
-        id: "upperBar"
-        space: 40
-        size_hint: 1, .05
-        Button:
-            id: "menuButton"
-            text: "1"
-            size_hint: .07, 1
-            on_press: root.mostrar_menu()
-        Label:
-            id: "textoPantalla"
-            text: "Pantalla x"
-            font_color: 0,1,0,1
-            size_hint: .15, 1
+        id: "PantallaLayout"
+        orientation: 'vertical'
+        rows: 2
+        color: 1,1,1,1
         BoxLayout:
-            
-        Button:
-            id: "srchButton"
-            text: "Srch"
-            size_hint: .07, 1
+            orientation: 'horizontal'
+            id: "upperBar"
+            space: 40
+            size_hint: 1, .05
+            Button:
+                id: "menuButton"
+                text: "1"
+                size_hint: .07, 1
+                on_press: root.mostrar_menu()
+            Label:
+                id: "textoPantalla"
+                text: "Pantalla x"
+                font_color: 0,1,0,1
+                size_hint: .15, 1
+            BoxLayout:
+                
+            Button:
+                id: "srchButton"
+                text: "Srch"
+                size_hint: .07, 1
 
-    
-    
-    
-    
-    
-    
-    
-    Sm:
-        id: "Screens"
-        Brain:
-        Experimentos:
-        Personas:
-        Aromas:
+        
+        
+        
+        
+        
+        
+        
+        Sm:
+            id: "Screens"
+            transition: SlideTransition()
+            Brain:
+            Experimentos:
+            Personas:
+            Aromas:
 
    
+<LoginScreen>:
+    name: "LoginScreen"
+    BoxLayout:
+        orientation: 'vertical'
+        space: 20
+        size_hint: .4, .4
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        Label:
+            id:"LoginLabel"
+            text: "Login"
+            size_hint: 1, .1
+        TextInput:
+            id: "inputCorreo"
+            text: "Correo"
+            size_hint: 1, .2
+        TextInput:
+            id: "inputContraseña"
+            text: "Contraseña"
+            size_hint: 1, .2
+        Button:
+            text: "Ingresar"
+            size_hint: 1, .2
+            on_press: root.manager.current='PantallaScreen'
+        GridLayout:
+            size_hint: 1, .2
+        BoxLayout:
+            size_hint: 1, .1
+            orientation: 'horizontal'
+            Label:
+                text: "No tienes cuenta?"
+            Label:
+                id: "linkRegistro"
+                text: "Registrate!"
+
+
 
 <MenuPop>:
-    title: "Menu"
+    title: ""
+    separator_height: 0
     size_hint: .2, 1
     pos_hint: {'x': 0, 'top': 1}
     pos: 0, 500
@@ -52,6 +99,8 @@
         Button:
             text:"Experimentos"
             size_hint: 1, .07
+            on_press: root.ocultar_menu()
+            on_press: root.pasar_a_experimentos()
         Button:
             text:"Personas"
             size_hint: 1, .07
@@ -84,7 +133,13 @@
         on_press: root.manager.current='Aromas'
 
 <Aromas>:
+
     name:'Aromas'
     Button:
         text: "Goto Brain"
         on_press: root.manager.current='Brain'
+<Ssm>:
+    id: "Sscreens"
+    transition: FallOutTransition()
+    LoginScreen:
+    PantallaScreen:
