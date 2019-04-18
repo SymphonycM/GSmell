@@ -6,88 +6,121 @@
 #:import WipeTransition kivy.uix.screenmanager.WipeTransition
 #:import FallOutTransition kivy.uix.screenmanager.FallOutTransition
 #:import RiseInTransition kivy.uix.screenmanager.RiseInTransition
+
 <PantallaScreen>:
     name: 'PantallaScreen'
+    id: PantallaScreen
     BoxLayout:
-        id: "PantallaLayout"
+        id: PantallaLayout
         orientation: 'vertical'
         rows: 2
         color: 1,1,1,1
         BoxLayout:
             orientation: 'horizontal'
-            id: "upperBar"
+            id: upperBar
             space: 40
             size_hint: 1, .05
             Button:
-                id: "menuButton"
+                id: menuButton
                 text: "1"
                 size_hint: .07, 1
                 on_press: root.mostrar_menu()
             Label:
-                id: "textoPantalla"
+                id: textoPantalla
                 text: "Pantalla x"
                 font_color: 0,1,0,1
                 size_hint: .15, 1
             BoxLayout:
                 
             Button:
-                id: "srchButton"
+                id: srchButton
                 text: "Srch"
                 size_hint: .07, 1
 
         
-        
-        
-        
-        
-        
-        
         Sm:
-            id: "Screens"
-            transition: SlideTransition()
-            Brain:
-            Experimentos:
-            Personas:
-            Aromas:
+            id: Screens
 
    
 <LoginScreen>:
-    name: "LoginScreen"
+    id: LoginScreen
+    name: 'LoginScreen'
     BoxLayout:
         orientation: 'vertical'
         space: 20
         size_hint: .4, .4
         pos_hint: {'center_x': .5, 'center_y': .5}
         Label:
-            id:"LoginLabel"
+            id:LoginLabel
             text: "Login"
             size_hint: 1, .1
         TextInput:
-            id: "inputCorreo"
+            id: inputCorreoL
             text: "Correo"
             size_hint: 1, .2
         TextInput:
-            id: "inputContraseña"
+            id: inputContrasenaL
             text: "Contraseña"
             size_hint: 1, .2
         Button:
             text: "Ingresar"
             size_hint: 1, .2
-            on_press: root.manager.current='PantallaScreen'
-        GridLayout:
+            on_press: root.validar_login()
+        Label:
+            id: loginIncorrectoLabel
+            text:""
             size_hint: 1, .2
         BoxLayout:
             size_hint: 1, .1
             orientation: 'horizontal'
             Label:
                 text: "No tienes cuenta?"
-            Label:
-                id: "linkRegistro"
+            Button:
+                id: linkRegistro
                 text: "Registrate!"
+                on_press:  root.manager.current='RegisterScreen'
 
-
+<RegisterScreen>:
+    id: ScreenLayout
+    name: 'RegisterScreen'
+    BoxLayout: 
+        id: ScreenLayout
+        orientation: 'vertical'
+        space: 20
+        size_hint: .4, .4
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        Label:
+            id: RegisterLabel
+            text: "Registro"
+            size_hint: 1, .1
+        TextInput:
+            id: inputCorreo
+            text: "Correo"
+            size_hint: 1, .2
+        TextInput:
+            id: inputContrasena
+            text: "Contraseña"
+            size_hint: 1, .2
+        Button:
+            id: ButtonRegistrarse
+            text: "Registrarse"
+            size_hint: 1, .2
+            on_press: root.registrar()
+            on_press: root.manager.current='LoginScreen'
+        GridLayout:
+            size_hint: 1, .2
+        BoxLayout:
+            size_hint: 1, .1
+            orientation: 'horizontal'
+            Label:
+                text: "Ya tienes una cuenta?"
+            Button:
+                id: linkLogin
+                text: "Ingresa!"
+                on_press: root.manager.current='LoginScreen'
 
 <MenuPop>:
+    id: MenuPopup
     title: ""
     separator_height: 0
     size_hint: .2, 1
@@ -97,19 +130,24 @@
         orientation: 'vertical'
         space: 10
         Button:
+            id: ButtonExperimentos
             text:"Experimentos"
             size_hint: 1, .07
-            on_press: root.ocultar_menu()
             on_press: root.pasar_a_experimentos()
         Button:
+            id: ButtonPersonas
             text:"Personas"
             size_hint: 1, .07
+            on_press: root.pasar_a_personas()
         Button:
+            id: ButtonAromas
             text: "Aromas"
             size_hint: 1, .07
+            on_press: root.pasar_a_aromas()
         BoxLayout:
 
         Button:
+            id: ButtonSalir
             text: "Salir"
             size_hint: 1, .07
 
@@ -117,6 +155,7 @@
 <Brain>:
     name: 'Brain'
     Button:
+        background_normal: "Brain1.jpg"
         text: "Pantalla del gif"
         on_press: root.manager.current='Experimentos'
 
@@ -139,7 +178,15 @@
         text: "Pantalla de aromas"
         on_press: root.manager.current='Brain'
 <Ssm>:
-    id: "Sscreens"
+    id: Sscreens
     transition: FallOutTransition()
     LoginScreen:
+    RegisterScreen:
     PantallaScreen:
+<Sm>:
+    id: Screens
+    transition: SlideTransition()
+    Brain:
+    Experimentos:
+    Personas:
+    Aromas:
