@@ -6,6 +6,7 @@
 #:import WipeTransition kivy.uix.screenmanager.WipeTransition
 #:import FallOutTransition kivy.uix.screenmanager.FallOutTransition
 #:import RiseInTransition kivy.uix.screenmanager.RiseInTransition
+#:import CheckBox kivy.uix.checkbox
 
 <PantallaScreen>:
     name: 'PantallaScreen'
@@ -56,11 +57,11 @@
             size_hint: 1, .1
         TextInput:
             id: inputCorreoL
-            text: "Correo"
+            hint_text: "Correo"
             size_hint: 1, .2
         TextInput:
             id: inputContrasenaL
-            text: "Contraseña"
+            hint_text: "Contraseña"
             size_hint: 1, .2
         Button:
             text: "Ingresar"
@@ -160,10 +161,145 @@
         on_press: root.manager.current='Experimentos'
 
 <Experimentos>:
-    name: 'Experimentos'
-    Button:
-        text: "Pantalla de experimentos"
-        on_press: root.manager.current='Personas'
+    name: 'Experimentos'            
+    BoxLayout:
+        orientation: 'vertical'
+        space: 20
+        size_hint: .4, .05
+        pos_hint: {'center_x': .5, 'center_y': 0.94}
+        Button:
+            text: "Crear experimento "
+            on_press: root.crear_exp()
+
+<ExperimentoPop>:
+    id: ExperimentoPopup
+    title: "Crear experimento"
+    title_align: 'center'
+    separator_height: 0.9
+    size_hint: .6, 0.5
+    pos_hint: {'x': 0.2, 'top': 0.75}
+    pos: 0, 500
+    BoxLayout:
+        orientation: 'vertical'
+        space: 10
+        TextInput:
+            id: inputEmpresaL
+            hint_text: "Nombre empresa"
+            size_hint: 1, .30
+        TextInput:
+            id: inputNombreL
+            hint_text: "Nombre experimento"
+            size_hint: 1, .30
+        Button:
+            id: ButtonAromas
+            text: "Añadir personas"
+            size_hint: 1, .30
+            on_press: root.anadir_personas_exp()
+        Button:
+            id: ButtonAromas
+            text: "Añadir aromas"
+            size_hint: 1, .30
+            on_press: root.anadir_aromas_exp()
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                id: ButtonCrear
+                text: "Crear"
+                size_hint: 1, .30
+                on_press: root.registrarExp(), root.confirmar_exp()
+            Button:
+                id: ButtonSalirCrear
+                text: "Salir"
+                size_hint: 1, .30
+                on_press: root.dismiss()
+
+<AnadirPersonasExpPop>:
+    id: AnadirPersonasExpPopup
+    title: "Añadir personas al experimento"
+    title_align: 'center'
+    separator_height: 0.9
+    size_hint: .6, 0.5
+    pos_hint: {'x': 0.2, 'top': 0.75}
+    pos: 0, 500
+    BoxLayout:
+        orientation: 'vertical'
+        space: 10
+        Button:
+            id: ButtonAnadirPer1
+            text:"Jorge Herrera"
+            size_hint: 1, .22
+            on_press: root.btn_chk()
+        Button:
+            id: ButtonAnadirPer2
+            text:"Esteban Osorio"
+            size_hint: 1, .22
+            on_press: root.btn_chk()
+        Button:
+            id: ButtonAnadirPer3
+            text:"Samuel Cadavid"
+            size_hint: 1, .22
+            on_press: root.btn_chk()
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                id: ButtonSalirCrear
+                text: "Salir"
+                size_hint: 1, .22
+                on_press: root.dismiss()
+
+<AnadirAromasExpPop>:
+    id: AnadirAromasExpPopup
+    title: "Añadir aromas al experimento"
+    title_align: 'center'
+    separator_height: 0.9
+    size_hint: .6, 0.5
+    pos_hint: {'x': 0.2, 'top': 0.75}
+    pos: 0, 500
+    BoxLayout:
+        orientation: 'vertical'
+        space: 10
+        Button:
+            id: ButtonAnadirAr1
+            text:"Aroma 1"
+            size_hint: 1, .22
+            on_press: root.btn_chk()
+        Button:
+            id: ButtonAnadirAr2
+            text:"Aroma 2"
+            size_hint: 1, .22
+            on_press: root.btn_chk()
+        Button:
+            id: ButtonAnadirR3
+            text:"Aroma 3"
+            size_hint: 1, .22
+            on_press: root.btn_chk()
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                id: ButtonSalirCrear
+                text: "Salir"
+                size_hint: 1, .22
+                on_press: root.dismiss()
+
+<confirmarExpPop>:
+    id: confirmarExpPopup
+    title: ""
+    title_align: 'center'
+    separator_height: 0
+    size_hint: .4, 0.3
+    pos_hint: {'x': 0.4, 'top': 0.55}
+    pos: 0, 500
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Experiemento creado"
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                id: ButtonSalirCrear
+                text: "Salir"
+                size_hint: 1, .22
+                on_press: root.dismiss()
 
 <Personas>:
     name: 'Personas'

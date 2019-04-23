@@ -18,6 +18,7 @@ client=MongoClient('mongodb+srv://GSmell:gsmellalce1@cluster0-sgq75.mongodb.net/
 db=client.GSmell
 evaluadosDB=db.Evaluados
 usuariosDB=db.Usuarios
+experimentosDB = db.Experimentos
 
 class LoginScreen(Screen):
     def validar_login(self):
@@ -48,6 +49,47 @@ class PantallaScreen(Screen):
         menu.open()
     
 class Experimentos(Screen):
+    def crear_exp(self):
+        exp = ExperimentoPop()
+        exp.open()
+    def check_memory(self):
+        for i in experimentosDB:
+            r1 = 'Nombre empresa: '+ i[1]
+            r2 = 'Nombre experimento' + i[2]
+            r3 = 'Personas: '+ i[3]
+            r4 = 'Aromas: '+ i[4]
+
+class ExperimentoPop(Popup):
+    def anadir_personas_exp(self):
+        anadirPersonas = AnadirPersonasExpPop()
+        anadirPersonas.open()
+    def anadir_aromas_exp(self):
+        anadirAromas = AnadirAromasExpPop()
+        anadirAromas.open()
+    def registrarExp(self):
+        listaPer= ["Jorge", "Samuel", "Esteban"]
+        listaAr= ["Aroma 1", "Aroma 2"]
+        new_exp={
+            "Empresa": self.ids.inputEmpresaL.text,
+            "Nombre": self.ids.inputNombreL.text,
+            "Personas": listaPer,
+            "Aromas": listaAr
+        }
+        experimentosDB.insert_one(new_exp)
+    def confirmar_exp(self):
+        confirmarExp = confirmarExpPop()
+        confirmarExp.open()
+class AnadirPersonasExpPop(Popup):
+    def btn_chk(self):
+        #ListaPersonasExp = []
+        #ListaPersonasExp.append(self.ids.self.text)
+        pass
+
+class AnadirAromasExpPop(Popup):
+    def btn_chk(self):
+        pass
+
+class confirmarExpPop(Popup):
     pass
 
 class Brain(Screen):
@@ -69,6 +111,7 @@ class MenuPop(Popup):
     def pasar_a_experimentos(self):
         megaroot=App.get_running_app()
         megaroot.root.children[0].children[0].children[0].current='Experimentos'
+        MenuPop.dismiss(self)
 
     def pasar_a_personas(self):
         megaroot=App.get_running_app()
