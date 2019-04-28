@@ -46,6 +46,12 @@
 <LoginScreen>:
     id: LoginScreen
     name: 'LoginScreen'
+    #canvas:
+        #Color:
+            #rgb: .2, .3,  .9
+        #Rectangle:
+            #pos: self.pos
+            #size: self.size
     BoxLayout:
         orientation: 'vertical'
         space: 20
@@ -61,6 +67,7 @@
             size_hint: 1, .2
         TextInput:
             id: inputContrasenaL
+            password:True
             hint_text: "Contraseña"
             size_hint: 1, .2
         Button:
@@ -161,10 +168,10 @@
         on_press: root.manager.current='Experimentos'
 
 <Experimentos>:
-    name: 'Experimentos'            
+    name: 'Experimentos'
     BoxLayout:
         orientation: 'vertical'
-        space: 20
+        space: 10
         size_hint: .4, .05
         pos_hint: {'center_x': .5, 'center_y': 0.94}
         Button:
@@ -190,16 +197,22 @@
             id: inputNombreL
             hint_text: "Nombre experimento"
             size_hint: 1, .30
-        Button:
-            id: ButtonAromas
-            text: "Añadir personas"
+        BoxLayout:
+            orientation:"horizontal"
             size_hint: 1, .30
-            on_press: root.anadir_personas_exp()
-        Button:
-            id: ButtonAromas
-            text: "Añadir aromas"
+            Spinner:
+                id: spinnerId
+                text: "Seleccionar personas"
+                values: ["Persona1", "Persona2", "Persona3", "Persona4", "Persona5"]
+                on_text: root.listPer(spinnerId.text)
+        BoxLayout:
+            orientation:"horizontal"
             size_hint: 1, .30
-            on_press: root.anadir_aromas_exp()
+            Spinner:
+                text: "Seleccionar aroma"
+                values: ["Aroma1", "Aroma2"]
+                id: spinnerIdar
+                on_text: root.listAr(spinnerIdar.text)
         BoxLayout:
             orientation: "horizontal"
             Button:
@@ -211,74 +224,6 @@
                 id: ButtonSalirCrear
                 text: "Salir"
                 size_hint: 1, .30
-                on_press: root.dismiss()
-
-<AnadirPersonasExpPop>:
-    id: AnadirPersonasExpPopup
-    title: "Añadir personas al experimento"
-    title_align: 'center'
-    separator_height: 0.9
-    size_hint: .6, 0.5
-    pos_hint: {'x': 0.2, 'top': 0.75}
-    pos: 0, 500
-    BoxLayout:
-        orientation: 'vertical'
-        space: 10
-        Button:
-            id: ButtonAnadirPer1
-            text:"Jorge Herrera"
-            size_hint: 1, .22
-            on_press: root.btn_chk()
-        Button:
-            id: ButtonAnadirPer2
-            text:"Esteban Osorio"
-            size_hint: 1, .22
-            on_press: root.btn_chk()
-        Button:
-            id: ButtonAnadirPer3
-            text:"Samuel Cadavid"
-            size_hint: 1, .22
-            on_press: root.btn_chk()
-        BoxLayout:
-            orientation: "horizontal"
-            Button:
-                id: ButtonSalirCrear
-                text: "Salir"
-                size_hint: 1, .22
-                on_press: root.dismiss()
-
-<AnadirAromasExpPop>:
-    id: AnadirAromasExpPopup
-    title: "Añadir aromas al experimento"
-    title_align: 'center'
-    separator_height: 0.9
-    size_hint: .6, 0.5
-    pos_hint: {'x': 0.2, 'top': 0.75}
-    pos: 0, 500
-    BoxLayout:
-        orientation: 'vertical'
-        space: 10
-        Button:
-            id: ButtonAnadirAr1
-            text:"Aroma 1"
-            size_hint: 1, .22
-            on_press: root.btn_chk()
-        Button:
-            id: ButtonAnadirAr2
-            text:"Aroma 2"
-            size_hint: 1, .22
-            on_press: root.btn_chk()
-        Button:
-            id: ButtonAnadirR3
-            text:"Aroma 3"
-            size_hint: 1, .22
-            on_press: root.btn_chk()
-        BoxLayout:
-            orientation: "horizontal"
-            Button:
-                id: ButtonSalirCrear
-                text: "Salir"
-                size_hint: 1, .22
                 on_press: root.dismiss()
 
 <confirmarExpPop>:

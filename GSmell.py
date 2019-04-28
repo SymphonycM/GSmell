@@ -19,6 +19,8 @@ db=client.GSmell
 evaluadosDB=db.Evaluados
 usuariosDB=db.Usuarios
 experimentosDB = db.Experimentos
+Aroma=[]
+listaPer=[]
 
 class LoginScreen(Screen):
     def validar_login(self):
@@ -47,47 +49,37 @@ class PantallaScreen(Screen):
     def mostrar_menu(self):
         menu=MenuPop()
         menu.open()
-    
+
+class DataWid(BoxLayout):
+    pass
+
 class Experimentos(Screen):
+    def check_memory(self):
+        for doc in experimentosDB.find():
+            r1 = "Empresa: "+doc["Empresa"]+ "\n"
+            r2 = "Nombre: " +doc["Nombre"]+ "\n"
+            r3 = "Personas: " + ", ".join(doc["Personas"])+ "\n"
+            r4 = "Aroma: " + "".join(doc["Aromas"])+ "\n"
+            print(r1+r2+r3+r4)
     def crear_exp(self):
         exp = ExperimentoPop()
         exp.open()
-    def check_memory(self):
-        for i in experimentosDB:
-            r1 = 'Nombre empresa: '+ i[1]
-            r2 = 'Nombre experimento' + i[2]
-            r3 = 'Personas: '+ i[3]
-            r4 = 'Aromas: '+ i[4]
-
 class ExperimentoPop(Popup):
-    def anadir_personas_exp(self):
-        anadirPersonas = AnadirPersonasExpPop()
-        anadirPersonas.open()
-    def anadir_aromas_exp(self):
-        anadirAromas = AnadirAromasExpPop()
-        anadirAromas.open()
+    def listPer(self, values):
+        listaPer.append(values)
+    def listAr(self, value):
+        Aroma.append(value)
     def registrarExp(self):
-        listaPer= ["Jorge", "Samuel", "Esteban"]
-        listaAr= ["Aroma 1", "Aroma 2"]
         new_exp={
             "Empresa": self.ids.inputEmpresaL.text,
             "Nombre": self.ids.inputNombreL.text,
             "Personas": listaPer,
-            "Aromas": listaAr
+            "Aromas": Aroma
         }
         experimentosDB.insert_one(new_exp)
     def confirmar_exp(self):
         confirmarExp = confirmarExpPop()
         confirmarExp.open()
-class AnadirPersonasExpPop(Popup):
-    def btn_chk(self):
-        #ListaPersonasExp = []
-        #ListaPersonasExp.append(self.ids.self.text)
-        pass
-
-class AnadirAromasExpPop(Popup):
-    def btn_chk(self):
-        pass
 
 class confirmarExpPop(Popup):
     pass
