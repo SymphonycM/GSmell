@@ -68,6 +68,7 @@ class Experimentos(Screen):
     def crear_exp(self):
         exp = ExperimentoPop()
         exp.open()
+
 class ExperimentoPop(Popup):
     def listPer(self, values):
                 
@@ -144,6 +145,11 @@ class Ssm(ScreenManager):
     pass
     
 class MenuPop(Popup):
+    def salir(self):
+        megaroot=App.get_running_app()
+        megaroot.root.current='LoginScreen'
+        self.dismiss()
+
     def pasar_a_experimentos(self):
         megaroot=App.get_running_app()
         megaroot.root.children[0].children[0].children[0].current='Experimentos'
