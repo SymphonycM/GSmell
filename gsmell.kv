@@ -103,11 +103,11 @@
             size_hint: 1, .1
         TextInput:
             id: inputCorreo
-            text: "Correo"
+            hint_text: "Correo"
             size_hint: 1, .2
         TextInput:
             id: inputContrasena
-            text: "Contraseña"
+            hint_text: "Contraseña"
             size_hint: 1, .2
         Button:
             id: ButtonRegistrarse
@@ -158,6 +158,7 @@
             id: ButtonSalir
             text: "Salir"
             size_hint: 1, .07
+            on_press: root.salir()
 
 
 <Brain>:

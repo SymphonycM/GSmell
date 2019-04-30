@@ -1,3 +1,7 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import random
+import serial
 import kivy
 import pymongo
 from kivy.app import App
@@ -22,6 +26,7 @@ experimentosDB = db.Experimentos
 personasDB = db.Personas
 Aroma=[]
 listaPer=[]
+arduino = serial.Serial('COM13', 9600, timeout=.1)
 
 class LoginScreen(Screen):
     def validar_login(self):
@@ -55,19 +60,59 @@ class DataWid(BoxLayout):
     pass
 
 class Experimentos(Screen):
-    def check_memory(self):
-        for doc in experimentosDB.find():
-            r1 = "Empresa: "+doc["Empresa"]+ "\n"
-            r2 = "Nombre: " +doc["Nombre"]+ "\n"
-            r3 = "Personas: " + ", ".join(doc["Personas"])+ "\n"
-            r4 = "Aroma: " + "".join(doc["Aromas"])+ "\n"
-            print(r1+r2+r3+r4)
+    for doc in experimentosDB.find():
+        r1 = "Empresa: "+doc["Empresa"]+ "\n"
+        r2 = "Nombre: " +doc["Nombre"]+ "\n"
+        r3 = "Personas: " + ", ".join(doc["Personas"])+ "\n"
+        r4 = "Aroma: " + "".join(doc["Aromas"])+ "\n"
+        print(r1+r2+r3+r4)
     def crear_exp(self):
         exp = ExperimentoPop()
         exp.open()
+
 class ExperimentoPop(Popup):
     def listPer(self, values):
+                
         listaPer.append(values)
+        plt.ion() # decimos de forma explícita que sea interactivo
+        b=True
+        y = [] # los datos que vamos a dibujar y a actualizar
+        n=0
+        # el bucle infinito que irá dibujando
+        while b:
+            if n == 90:
+                sum=0
+                for i in range(0,len(y)):
+                    sum=sum+y[i]
+                promedio = sum/len(y)
+                print(promedio)
+                plt.close()
+                b=False
+            else:
+                n = n+1
+            #y.append(random.uniform(20, 40)) # añadimos un valor aleatorio a la lista 'y'
+            data = int(arduino.readline()) #the last bit gets rid of the new-line chars
+            y.append(data)
+            # Estas condiciones las he incluido solo para dibujar los últimos 
+            # 10 datos de la lista 'y' ya que quiero que en el gráfico se 
+            # vea la evolución de los últimos datos
+            if len(y) <= 10:
+                plt.plot(y)
+                plt.xlabel('Tiempo (S)')
+                plt.ylabel('Frecuencia')
+                plt.ylim(20,40)
+                plt.xlim(0,60)
+            else:
+                plt.plot(y[-60:])
+                plt.xlabel('Tiempo (S)')
+                plt.ylabel('Frecuencia')
+                plt.ylim(20,40)
+                plt.xlim(0,60)
+            plt.pause(0.05) # esto pausará el gráfico
+            plt.cla() # esto limpia la información del axis (el área blanca donde
+                    # se pintan las cosas.
+        plt.close()
+
     def listAr(self, value):
         Aroma.append(value)
     def registrarExp(self):
@@ -124,6 +169,11 @@ class Ssm(ScreenManager):
     pass
     
 class MenuPop(Popup):
+    def salir(self):
+        megaroot=App.get_running_app()
+        megaroot.root.current='LoginScreen'
+        self.dismiss()
+
     def pasar_a_experimentos(self):
         megaroot=App.get_running_app()
         megaroot.root.children[0].children[0].children[0].current='Experimentos'
