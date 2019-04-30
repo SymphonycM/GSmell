@@ -19,6 +19,7 @@ db=client.GSmell
 evaluadosDB=db.Evaluados
 usuariosDB=db.Usuarios
 experimentosDB = db.Experimentos
+personasDB = db.Personas
 Aroma=[]
 listaPer=[]
 
@@ -87,9 +88,32 @@ class confirmarExpPop(Popup):
 class Brain(Screen):
     pass
 
+#Todo lo relacionado a personas y sus popups:
 class Personas(Screen):
+    def crearPer(self):
+        per = personasPop()
+        per.open()
+    
+    def verListaPer(self):
+        pass
+        
+class personasPop(Popup):
+    def creaPer(self):
+        new_per={
+            "Id": self.ids.inputIdP.text,
+            "Nombre": self.ids.inputNombreP.text,
+            "Edad": self.ids.inputEdadP.text,
+            "Genero": self.ids.inputGeneroP.text
+        }
+        personasDB.insert_one(new_per)
+    def confirmarPersona(self):
+        confirmarPer = confirmarPerPop()
+        confirmarPer.open()
+
+class confirmarPerPop(Popup):
     pass
 
+#------------------------------------------------------------------------------------------------------------------
 class Aromas(Screen):
     pass
 

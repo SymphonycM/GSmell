@@ -246,11 +246,82 @@
                 size_hint: 1, .22
                 on_press: root.dismiss()
 
+
 <Personas>:
     name: 'Personas'
-    Button:
-        text: "Pantalla de personas"
-        on_press: root.manager.current='Aromas'
+    BoxLayout:
+        orientation: 'horizontal'
+        space: 10
+        size_hint: .4, .05
+        pos_hint: {'center_x': .5, 'center_y': 0.94}
+        Button:
+            text: "Crear persona"
+            on_press: root.crearPer()
+        Button:
+            text: "Ver lista de personas"
+            on_press: root.verListaPer()
+
+<personasPop>:
+    id: personasPopup
+    title: "Registrar personas"
+    title_align: 'center'
+    separator_height: 0.9
+    size_hint: .6, 0.5
+    pos_hint: {'x': 0.2, 'top': 0.75}
+    pos: 0, 500
+    BoxLayout:
+        orientation: 'vertical'
+        space: 10
+        TextInput:
+            id: inputIdP
+            hint_text: "Id"
+            size_hint: 1, .30
+        TextInput:
+            id: inputNombreP
+            hint_text: "Nombre persona"
+            size_hint: 1, .30
+        TextInput:
+            id: inputEdadP
+            hint_text: "Edad"
+            size_hint: 1, .30
+        TextInput:
+            id: inputGeneroP
+            hint_text: "Genero"
+            size_hint: 1, .30
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                id: ButtonCrear
+                text: "Crear"
+                size_hint: 1, .30
+                on_press: root.registrarPer(), root.confirmarPersona()
+            Button:
+                id: ButtonSalirCrear
+                text: "Salir"
+                size_hint: 1, .30
+                on_press: root.dismiss()
+
+
+<confirmarPerPop>:
+    id: confirmarPerPopup
+    title: ""
+    title_align: 'center'
+    separator_height: 0
+    size_hint: .4, 0.3
+    pos_hint: {'x': 0.4, 'top': 0.65}
+    pos: 0, 500
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Persona registrada"
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                id: ButtonSalirCrear
+                text: "Salir"
+                size_hint: 1, .22
+                on_press: root.dismiss()
+
 
 <Aromas>:
 
