@@ -261,9 +261,9 @@
             text: "Ver lista de personas"
             on_press: root.verListaPer()
 
-<personasPop>:
-    id: personasPopup
-    title: "Registrar personas"
+<personasPopUp>:
+    id: personasPopUp
+    title: "Crear personas"
     title_align: 'center'
     separator_height: 0.9
     size_hint: .6, 0.5
@@ -294,7 +294,7 @@
                 id: ButtonCrear
                 text: "Crear"
                 size_hint: 1, .30
-                on_press: root.registrarPer(), root.confirmarPersona()
+                on_press: root.crearPer(), root.confirmarPersona()
             Button:
                 id: ButtonSalirCrear
                 text: "Salir"
@@ -308,7 +308,7 @@
     title_align: 'center'
     separator_height: 0
     size_hint: .4, 0.3
-    pos_hint: {'x': 0.4, 'top': 0.65}
+    pos_hint: {'x': 0.3, 'top': 0.65}
     pos: 0, 500
     BoxLayout:
         orientation: 'vertical'

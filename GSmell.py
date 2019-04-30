@@ -27,14 +27,14 @@ class LoginScreen(Screen):
     def validar_login(self):
         usr=self.ids.inputCorreoL.text
         contr=self.ids.inputContrasenaL.text
-        registrados=usuariosDB.find({"correo":usr , "contraseña":contr})
+        registrados=usuariosDB.find({"correo":usr , "contrasena":contr})
         if(len(list(registrados))>0):
             self.manager.current='PantallaScreen'
             self.ids.loginIncorrectoLabel.text=""
             self.ids.inputCorreoL.text=""
             self.ids.inputContrasenaL.text=""
         else:
-            self.ids.loginIncorrectoLabel.text="Correo o contraseña incorrecto"
+            self.ids.loginIncorrectoLabel.text="Correo o contrasena incorrecto"
             self.ids.inputCorreoL.text=""
             self.ids.inputContrasenaL.text=""
 
@@ -42,7 +42,7 @@ class RegisterScreen(Screen):
     def registrar(self):
         new_usr={
             "correo": self.ids.inputCorreo.text,
-            "contraseña": self.ids.inputContrasena.text
+            "contrasena": self.ids.inputContrasena.text
         }
         usuariosDB.insert_one(new_usr)
 
@@ -91,14 +91,14 @@ class Brain(Screen):
 #Todo lo relacionado a personas y sus popups:
 class Personas(Screen):
     def crearPer(self):
-        per = personasPop()
+        per = personasPopUp()
         per.open()
     
     def verListaPer(self):
         pass
         
-class personasPop(Popup):
-    def creaPer(self):
+class personasPopUp(Popup):
+    def crearPer(self):
         new_per={
             "Id": self.ids.inputIdP.text,
             "Nombre": self.ids.inputNombreP.text,
