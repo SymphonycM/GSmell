@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import random
-
+import serial
 import kivy
 import pymongo
 from kivy.app import App
@@ -25,6 +25,7 @@ usuariosDB=db.Usuarios
 experimentosDB = db.Experimentos
 Aroma=[]
 listaPer=[]
+arduino = serial.Serial('COM13', 9600, timeout=.1)
 
 class LoginScreen(Screen):
     def validar_login(self):
@@ -69,6 +70,7 @@ class Experimentos(Screen):
         exp.open()
 class ExperimentoPop(Popup):
     def listPer(self, values):
+                
         listaPer.append(values)
         plt.ion() # decimos de forma explícita que sea interactivo
         b=True
@@ -87,7 +89,8 @@ class ExperimentoPop(Popup):
             else:
                 n = n+1
             #y.append(random.uniform(20, 40)) # añadimos un valor aleatorio a la lista 'y'
-            y.append(random.randrange(20, 40, 1))
+            data = int(arduino.readline()) #the last bit gets rid of the new-line chars
+            y.append(data)
             # Estas condiciones las he incluido solo para dibujar los últimos 
             # 10 datos de la lista 'y' ya que quiero que en el gráfico se 
             # vea la evolución de los últimos datos
