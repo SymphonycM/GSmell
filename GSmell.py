@@ -17,6 +17,7 @@ from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import ScreenManager, Screen
 from pymongo import MongoClient
 
+
 Window.clearcolor= (0.5, 0.5, 0.5, 1)
 client=MongoClient('mongodb+srv://GSmell:gsmellalce1@cluster0-sgq75.mongodb.net/test?retryWrites=true')
 db=client.GSmell
@@ -26,7 +27,7 @@ experimentosDB = db.Experimentos
 personasDB = db.Personas
 Aroma=[]
 listaPer=[]
-arduino = serial.Serial('COM13', 9600, timeout=.1)
+#arduino = serial.Serial('COM13', 9600, timeout=.1)
 
 class LoginScreen(Screen):
     def validar_login(self):
@@ -56,24 +57,29 @@ class PantallaScreen(Screen):
         menu=MenuPop()
         menu.open()
 
-class DataWid(BoxLayout):
-    pass
-
 class Experimentos(Screen):
-    for doc in experimentosDB.find():
-        r1 = "Empresa: "+doc["Empresa"]+ "\n"
-        r2 = "Nombre: " +doc["Nombre"]+ "\n"
-        r3 = "Personas: " + ", ".join(doc["Personas"])+ "\n"
-        r4 = "Aroma: " + "".join(doc["Aromas"])+ "\n"
-        print(r1+r2+r3+r4)
+    def __init__(self, **kwargs):
+        super(Experimentos,self).__init__(**kwargs)
+        for doc in experimentosDB.find():
+            person = []
+            r1 = "Empresa: "+doc["Empresa"]+ "\n"
+            r2 = "Nombre: " +doc["Nombre"]+ "\n"
+            arrayPer = doc["Personas"]
+            for i in range(len(arrayPer)):
+                person.append(arrayPer[i][0])
+            r3 = "Personas: " + ", ".join(person)+ "\n"
+            r4 = "Aroma: " + "".join(doc["Aromas"])+ "\n"
+            datos = r1+r2+r3+r4
+            print(datos)
+            #self.ids.container_y.add_widget(Button(text=datos))
     def crear_exp(self):
         exp = ExperimentoPop()
         exp.open()
 
 class ExperimentoPop(Popup):
+
     def listPer(self, values):
-                
-        listaPer.append(values)
+        promedio = 0
         plt.ion() # decimos de forma explícita que sea interactivo
         b=True
         y = [] # los datos que vamos a dibujar y a actualizar
@@ -90,9 +96,9 @@ class ExperimentoPop(Popup):
                 b=False
             else:
                 n = n+1
-            #y.append(random.uniform(20, 40)) # añadimos un valor aleatorio a la lista 'y'
-            data = int(arduino.readline()) #the last bit gets rid of the new-line chars
-            y.append(data)
+            y.append(random.uniform(20, 40)) # añadimos un valor aleatorio a la lista 'y'
+            #data = int(arduino.readline()) #the last bit gets rid of the new-line chars
+            #y.append(data)
             # Estas condiciones las he incluido solo para dibujar los últimos 
             # 10 datos de la lista 'y' ya que quiero que en el gráfico se 
             # vea la evolución de los últimos datos
@@ -112,6 +118,8 @@ class ExperimentoPop(Popup):
             plt.cla() # esto limpia la información del axis (el área blanca donde
                     # se pintan las cosas.
         plt.close()
+        listaPer.append([values, promedio])
+        
 
     def listAr(self, value):
         Aroma.append(value)
@@ -126,7 +134,6 @@ class ExperimentoPop(Popup):
     def confirmar_exp(self):
         confirmarExp = confirmarExpPop()
         confirmarExp.open()
-
 class confirmarExpPop(Popup):
     pass
 
@@ -182,19 +189,22 @@ class MenuPop(Popup):
     def pasar_a_personas(self):
         megaroot=App.get_running_app()
         megaroot.root.children[0].children[0].children[0].current='Personas'
+        MenuPop.dismiss(self)
 
     def pasar_a_aromas(self):
         megaroot=App.get_running_app()
         megaroot.root.children[0].children[0].children[0].current='Aromas'
+        MenuPop.dismiss(self)
 
     def ocultar_menu(self):
         self.dismiss()
 
 class GSmellApp(App):
-    
+    title="GSmell"
     def build(self):
         global rooter
         rooter=Ssm()
         return rooter
 
-GSmellApp().run()
+if __name__=="__main__":
+    GSmellApp().run()
