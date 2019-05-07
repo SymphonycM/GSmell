@@ -7,6 +7,8 @@
 #:import FallOutTransition kivy.uix.screenmanager.FallOutTransition
 #:import RiseInTransition kivy.uix.screenmanager.RiseInTransition
 #:import CheckBox kivy.uix.checkbox
+#:import ListAdapter kivy.adapters.listadapter.ListAdapter
+#:import main GSmell
 
 <PantallaScreen>:
     name: 'PantallaScreen'
@@ -173,9 +175,11 @@
     BoxLayout:
         orientation: 'vertical'
         space: 10
-        size_hint: .4, .05
-        pos_hint: {'center_x': .5, 'center_y': 0.94}
+        ListView:
+            id: ListaExpp
+            adapter: ListAdapter(data=main.listaNomExp, cls=main.listadebotones)
         Button:
+            size_hint: .3, .1
             text: "Crear experimento "
             on_press: root.crear_exp()
 
@@ -251,16 +255,14 @@
 <Personas>:
     name: 'Personas'
     BoxLayout:
-        orientation: 'horizontal'
-        space: 10
-        size_hint: .4, .05
-        pos_hint: {'center_x': .5, 'center_y': 0.94}
+        orientation: 'vertical'
+        ListView:
+            id: ListaPerr
+            adapter: ListAdapter(data=main.listaNomPer, cls=main.listadebotones)
         Button:
             text: "Crear persona"
             on_press: root.crearPer()
-        Button:
-            text: "Ver lista de personas"
-            on_press: root.verListaPer()
+            size_hint: .3, .1
 
 <personasPopUp>:
     id: personasPopUp
@@ -325,11 +327,13 @@
 
 
 <Aromas>:
-
     name:'Aromas'
-    Button:
-        text: "Pantalla de aromas"
-        on_press: root.manager.current='Brain'
+    BoxLayout:
+        orientation: 'vertical'
+        ListView:
+            id: ListaArr
+            adapter: ListAdapter(data=main.listaNomAr, cls=main.listadebotones)
+        
 <Ssm>:
     id: Sscreens
     transition: FallOutTransition()
@@ -337,9 +341,13 @@
     RegisterScreen:
     PantallaScreen:
 <Sm>:
+
     id: Screens
     transition: SlideTransition()
     Brain:
     Experimentos:
     Personas:
     Aromas:
+<ListItemButton>:
+    selected_color: 0, 0, 1, 1
+    deselected_color: 0, 0, 0, 1

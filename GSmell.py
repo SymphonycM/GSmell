@@ -15,19 +15,32 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.core.window import Window
 from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.listview import ListItemButton
+from kivy.adapters.listadapter import ListAdapter
 from pymongo import MongoClient
 
-
 Window.clearcolor= (0.5, 0.5, 0.5, 1)
+
 client=MongoClient('mongodb+srv://GSmell:gsmellalce1@cluster0-sgq75.mongodb.net/test?retryWrites=true')
 db=client.GSmell
 evaluadosDB=db.Evaluados
 usuariosDB=db.Usuarios
 experimentosDB = db.Experimentos
 personasDB = db.Personas
+
 Aroma=[]
 listaPer=[]
+listaNomPer=[]
+for doc in personasDB.find():
+    listaNomPer.append(doc["Nombre"])
+listaNomExp=[]
+for doc in experimentosDB.find():
+    listaNomExp.append(doc["Nombre"])
+
 #arduino = serial.Serial('COM13', 9600, timeout=.1)
+
+class listadebotones(ListItemButton):
+    pass
 
 class LoginScreen(Screen):
     def validar_login(self):
@@ -58,24 +71,18 @@ class PantallaScreen(Screen):
         menu.open()
 
 class Experimentos(Screen):
-    def __init__(self, **kwargs):
-        super(Experimentos,self).__init__(**kwargs)
-        for doc in experimentosDB.find():
-            person = []
-            r1 = "Empresa: "+doc["Empresa"]+ "\n"
-            r2 = "Nombre: " +doc["Nombre"]+ "\n"
-            arrayPer = doc["Personas"]
-            for i in range(len(arrayPer)):
-                person.append(arrayPer[i][0])
-            r3 = "Personas: " + ", ".join(person)+ "\n"
-            r4 = "Aroma: " + "".join(doc["Aromas"])+ "\n"
-            datos = r1+r2+r3+r4
-            print(datos)
-            #self.ids.container_y.add_widget(Button(text=datos))
     def crear_exp(self):
         exp = ExperimentoPop()
         exp.open()
 
+    def actualizar_lista(self):
+        listaNomExp.clear()
+        for doc in experimentosDB.find():
+            listaNomExp.append(doc["Nombre"])
+        self.ids.ListaExpp.adapter.data=listaNomExp
+        self.ids.ListaExpp._trigger_reset_populate()
+        print("Lista de experimentos actualizada")
+        
 class ExperimentoPop(Popup):
 
     def listPer(self, values):
@@ -119,10 +126,10 @@ class ExperimentoPop(Popup):
                     # se pintan las cosas.
         plt.close()
         listaPer.append([values, promedio])
-        
-
+      
     def listAr(self, value):
         Aroma.append(value)
+    
     def registrarExp(self):
         new_exp={
             "Empresa": self.ids.inputEmpresaL.text,
@@ -131,23 +138,31 @@ class ExperimentoPop(Popup):
             "Aromas": Aroma
         }
         experimentosDB.insert_one(new_exp)
+        megaroot=App.get_running_app()
+        megaroot.root.children[0].children[0].children[0].children[0].actualizar_lista()
+
     def confirmar_exp(self):
         confirmarExp = confirmarExpPop()
         confirmarExp.open()
+
 class confirmarExpPop(Popup):
     pass
 
 class Brain(Screen):
     pass
 
-#Todo lo relacionado a personas y sus popups:
 class Personas(Screen):
     def crearPer(self):
         per = personasPopUp()
         per.open()
     
-    def verListaPer(self):
-        pass
+    def actualizar_lista(self):
+        listaNomPer.clear()
+        for doc in personasDB.find():
+            listaNomPer.append(doc["Nombre"])
+        self.ids.ListaPerr.adapter.data=listaNomPer
+        self.ids.ListaPerr._trigger_reset_populate()
+        print("Lista de personas actualizada")
         
 class personasPopUp(Popup):
     def crearPer(self):
@@ -158,6 +173,8 @@ class personasPopUp(Popup):
             "Genero": self.ids.inputGeneroP.text
         }
         personasDB.insert_one(new_per)
+        megaroot=App.get_running_app()
+        megaroot.root.children[0].children[0].children[0].children[0].actualizar_lista()
     def confirmarPersona(self):
         confirmarPer = confirmarPerPop()
         confirmarPer.open()
@@ -205,6 +222,8 @@ class GSmellApp(App):
         global rooter
         rooter=Ssm()
         return rooter
+
+    
 
 if __name__=="__main__":
     GSmellApp().run()
