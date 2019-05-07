@@ -230,6 +230,11 @@
                 text: "Salir"
                 size_hint: 1, .30
                 on_press: root.dismiss()
+            Button:
+                id: ButtonVerResultados
+                text: "Resultados"
+                size_hint: 1, .30
+                on_press: root.verResultadosExp()
 
 <confirmarExpPop>:
     id: confirmarExpPopup
@@ -251,6 +256,13 @@
                 size_hint: 1, .22
                 on_press: root.dismiss()
 
+<Resultados>:
+    name: 'Resultados'
+    id: Resultados
+    Button:
+        background_normal: "Resultado.png"
+        on_press: root.manager.current='Experimentos'
+             
 
 <Personas>:
     name: 'Personas'
@@ -351,3 +363,4 @@
 <ListItemButton>:
     selected_color: 0, 0, 1, 1
     deselected_color: 0, 0, 0, 1
+    Resultados:
