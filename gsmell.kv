@@ -252,25 +252,13 @@
                 size_hint: 1, .22
                 on_press: root.dismiss()
 
-<verResultadosExpPopup>:
-    id: verResultadosExpPopup
-    title: "Resultados del Experimento:"
-    title_align: 'center'
-    separator_height: 0
-    size_hint: .4, 0.3
-    pos_hint: {'x': 0.4, 'top': 0.55}
-    pos: 0, 500
-    BoxLayout:
-        orientation: 'vertical'
-        Label:
-            text: "Estos Son los resultados"
-        BoxLayout:
-            orientation: "horizontal"
-            Button:
-                id: ButtonSalirResultados
-                text: "Salir"
-                size_hint: 1, .22
-                on_press: root.dismiss()
+<Resultados>:
+    name: 'Resultados'
+    id: Resultados
+    Button:
+        background_normal: "Resultado.png"
+        on_press: root.manager.current='Experimentos'
+             
 
 <Personas>:
     name: 'Personas'
@@ -367,3 +355,4 @@
     Experimentos:
     Personas:
     Aromas:
+    Resultados:

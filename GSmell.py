@@ -116,7 +116,7 @@ class ExperimentoPop(Popup):
                 plt.xlim(0,60)
             plt.pause(0.05) # esto pausará el gráfico
             #con esto se guarda la grafica, se debe reemplazar la ubicacion:
-            plt.savefig('/Users/JorgeIvan/Desktop/Resultado.png', transparent=True, bbox_inches='tight')
+            plt.savefig('/Users/JorgeIvan/Desktop/Samuel/Eafit/Integrador/Codigo/Respositorio/GSmell/Resultado.png', transparent=False)
             plt.cla() # esto limpia la información del axis (el área blanca donde
                     # se pintan las cosas.
         plt.close()
@@ -138,12 +138,13 @@ class ExperimentoPop(Popup):
         confirmarExp.open()
 
     def verResultadosExp(self):
-        verResultados = verResultadosExpPopup()
-        verResultados.open()
+        megaroot=App.get_running_app()
+        megaroot.root.children[0].children[0].children[0].current='Resultados'
+        self.dismiss()
 class confirmarExpPop(Popup):
     pass
 
-class verResultadosExpPopup(Popup):
+class Resultados(Screen):
     pass
 
 class Brain(Screen):
