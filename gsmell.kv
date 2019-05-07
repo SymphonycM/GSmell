@@ -342,7 +342,62 @@
     name:'Aromas'
     BoxLayout:
         orientation: 'vertical'
-        
+        ListView:
+            id: ListaArr
+            adapter: ListAdapter(data=main.listaNomAr, cls=main.listadebotones)
+        Button:
+            text: "Crear Aroma"
+            on_press: root.crearAr()
+            size_hint: .3, .1
+
+<AromasPopUp>:
+    id: AromasPopUp
+    title: "Crear Aroma"
+    title_align: 'center'
+    separator_height: 0.9
+    size_hint: .6, 0.5
+    pos_hint: {'x': 0.2, 'top': 0.75}
+    pos: 0, 500
+    BoxLayout:
+        orientation: 'vertical'
+        space: 10
+        TextInput:
+            id: inputNombreA
+            hint_text: "Nombre Aroma"
+            size_hint: 1, .30
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                id: ButtonCrear
+                text: "Crear"
+                size_hint: 1, .30
+                on_press: root.crearAr(), root.confirmarAroma()
+            Button:
+                id: ButtonSalirCrear
+                text: "Salir"
+                size_hint: 1, .30
+                on_press: root.dismiss()
+
+<confirmarArPop>:
+    id: confirmarArPopup
+    title: ""
+    title_align: 'center'
+    separator_height: 0
+    size_hint: .4, 0.3
+    pos_hint: {'x': 0.3, 'top': 0.65}
+    pos: 0, 500
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Aroma registrado"
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                id: ButtonSalirCrear
+                text: "Salir"
+                size_hint: 1, .22
+                on_press: root.dismiss()
+
         
 <Ssm>:
     id: Sscreens

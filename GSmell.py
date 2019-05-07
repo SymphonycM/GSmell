@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import random
-import serial
+#import serial
 import kivy
 import pymongo
 from kivy.app import App
@@ -27,8 +27,9 @@ evaluadosDB=db.Evaluados
 usuariosDB=db.Usuarios
 experimentosDB = db.Experimentos
 personasDB = db.Personas
+aromasDB = db.Aromas
 
-Aroma=[]
+listaAr=[]
 listaPer=[]
 listaNomPer=[]
 for doc in personasDB.find():
@@ -36,6 +37,9 @@ for doc in personasDB.find():
 listaNomExp=[]
 for doc in experimentosDB.find():
     listaNomExp.append(doc["Nombre"])
+listaNomAr=[]
+for doc in aromasDB.find():
+    listaNomAr.append(doc["Nombre"])
 
 #arduino = serial.Serial('COM13', 9600, timeout=.1)
 
@@ -123,7 +127,7 @@ class ExperimentoPop(Popup):
                 plt.xlim(0,60)
             plt.pause(0.05) # esto pausará el gráfico
             #con esto se guarda la grafica, se debe reemplazar la ubicacion:
-            plt.savefig('/Users/JorgeIvan/Desktop/Samuel/Eafit/Integrador/Codigo/Respositorio/GSmell/Resultado.png', transparent=False)
+            plt.savefig('/Users/esteb/OneDrive/Escritorio/Resultado.png', transparent=False)
             plt.cla() # esto limpia la información del axis (el área blanca donde
                     # se pintan las cosas.
         plt.close()
@@ -194,7 +198,32 @@ class confirmarPerPop(Popup):
 
 #------------------------------------------------------------------------------------------------------------------
 class Aromas(Screen):
+    def crearAr(self):
+        Ar = AromasPopUp()
+        Ar.open()
+    def actualizar_lista(self):
+        listaNomAr.clear()
+        for doc in aromasDB.find():
+            listaNomAr.append(doc["Nombre"])
+        self.ids.ListaArr.adapter.data=listaNomAr
+        self.ids.ListaArr._trigger_reset_populate()
+        print("Lista de aromas actualizada")
+    
+class AromasPopUp(Popup):
+    def crearAr(self):
+        new_Ar={
+            "Nombre": self.ids.inputNombreA.text,
+        }
+        aromasDB.insert_one(new_Ar)
+        megaroot=App.get_running_app()
+        megaroot.root.children[0].children[0].children[0].children[0].actualizar_lista()
+    def confirmarAroma(self):
+        confirmarAr = confirmarArPop()
+        confirmarAr.open()
+
+class confirmarArPop(Popup):
     pass
+
 
 class Sm(ScreenManager):
     pass
