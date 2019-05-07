@@ -136,6 +136,9 @@ class ExperimentoPop(Popup):
     def confirmar_exp(self):
         confirmarExp = confirmarExpPop()
         confirmarExp.open()
+
+    def verResultadosExp(self):
+        pass
 class confirmarExpPop(Popup):
     pass
 
