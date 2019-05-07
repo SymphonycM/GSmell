@@ -29,6 +29,7 @@ experimentosDB = db.Experimentos
 personasDB = db.Personas
 aromasDB = db.Aromas
 
+Aroma=[]
 listaAr=[]
 listaPer=[]
 listaNomPer=[]
@@ -196,7 +197,6 @@ class personasPopUp(Popup):
 class confirmarPerPop(Popup):
     pass
 
-#------------------------------------------------------------------------------------------------------------------
 class Aromas(Screen):
     def crearAr(self):
         Ar = AromasPopUp()
@@ -223,7 +223,6 @@ class AromasPopUp(Popup):
 
 class confirmarArPop(Popup):
     pass
-
 
 class Sm(ScreenManager):
     pass
