@@ -151,6 +151,7 @@ class ExperimentoPop(Popup):
         megaroot=App.get_running_app()
         megaroot.root.children[0].children[0].children[0].current='Resultados'
         self.dismiss()
+
 class confirmarExpPop(Popup):
     pass
 
