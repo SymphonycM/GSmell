@@ -138,8 +138,12 @@ class ExperimentoPop(Popup):
         confirmarExp.open()
 
     def verResultadosExp(self):
-        pass
+        verResultados = verResultadosExpPopup()
+        verResultados.open()
 class confirmarExpPop(Popup):
+    pass
+
+class verResultadosExpPopup(Popup):
     pass
 
 class Brain(Screen):
