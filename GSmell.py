@@ -128,7 +128,7 @@ class ExperimentoPop(Popup):
                 plt.xlim(0,60)
             plt.pause(0.05) # esto pausará el gráfico
             #con esto se guarda la grafica, se debe reemplazar la ubicacion:
-            plt.savefig('/Users/esteb/OneDrive/Escritorio/Resultado.png', transparent=False)
+            plt.savefig('/Users/JLH/Desktop/Resultado.png', transparent=False)
             plt.cla() # esto limpia la información del axis (el área blanca donde
                     # se pintan las cosas.
         plt.close()

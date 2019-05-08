@@ -25,12 +25,12 @@
             size_hint: 1, .05
             Button:
                 id: menuButton
-                text: "1"
+                text: "Menu"
                 size_hint: .07, 1
                 on_press: root.mostrar_menu()
             Label:
                 id: textoPantalla
-                text: "Pantalla x"
+                text: "GSmell"
                 font_color: 0,1,0,1
                 size_hint: .15, 1
             BoxLayout:
@@ -67,11 +67,13 @@
             id: inputCorreoL
             hint_text: "Correo"
             size_hint: 1, .2
+            multiline: False
         TextInput:
             id: inputContrasenaL
             password:True
-            hint_text: "Contraseña"
+            hint_text: "Contrasena"
             size_hint: 1, .2
+            multiline: False
         Button:
             text: "Ingresar"
             size_hint: 1, .2
@@ -107,10 +109,12 @@
             id: inputCorreo
             hint_text: "Correo"
             size_hint: 1, .2
+            multiline: False
         TextInput:
             id: inputContrasena
             hint_text: "Contraseña"
             size_hint: 1, .2
+            multiline: False
         Button:
             id: ButtonRegistrarse
             text: "Registrarse"
@@ -198,10 +202,12 @@
             id: inputEmpresaL
             hint_text: "Nombre empresa"
             size_hint: 1, .30
+            multiline: False
         TextInput:
             id: inputNombreL
             hint_text: "Nombre experimento"
             size_hint: 1, .30
+            multiline: False
         BoxLayout:
             orientation:"horizontal"
             size_hint: 1, .30
@@ -256,12 +262,12 @@
                 size_hint: 1, .22
                 on_press: root.dismiss()
 
-<Resultados>:
-    name: 'Resultados'
-    id: Resultados
-    Button:
-        background_normal: "Resultado.png"
-        on_press: root.manager.current='Experimentos'
+# <Resultados>:
+#     name: 'Resultados'
+#     id: Resultados
+#     Button:
+#         background_normal: "Resultado.png"
+#         on_press: root.manager.current='Experimentos'
              
 
 <Personas>:
@@ -291,18 +297,22 @@
             id: inputIdP
             hint_text: "Id"
             size_hint: 1, .30
+            multiline: False
         TextInput:
             id: inputNombreP
             hint_text: "Nombre persona"
             size_hint: 1, .30
+            multiline: False
         TextInput:
             id: inputEdadP
             hint_text: "Edad"
             size_hint: 1, .30
+            multiline: False
         TextInput:
             id: inputGeneroP
             hint_text: "Genero"
             size_hint: 1, .30
+            multiline: False
         BoxLayout:
             orientation: "horizontal"
             Button:
@@ -365,6 +375,7 @@
             id: inputNombreA
             hint_text: "Nombre Aroma"
             size_hint: 1, .30
+            multiline: False
         BoxLayout:
             orientation: "horizontal"
             Button:
