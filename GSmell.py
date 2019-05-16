@@ -108,7 +108,8 @@ class ExperimentoPop(Popup):
                 b=False
             else:
                 n = n+1
-            y.append(random.uniform(20, 40)) # añadimos un valor aleatorio a la lista 'y'
+            y.append(random.uniform(20, 40))
+            # añadimos un valor aleatorio a la lista 'y'
             #data = int(arduino.readline()) #the last bit gets rid of the new-line chars
             #y.append(data)
             # Estas condiciones las he incluido solo para dibujar los últimos 
