@@ -155,7 +155,7 @@
             on_press: root.pasar_a_personas()
         Button:
             id: ButtonAromas
-            text: "Aromas"
+            text: "Imagenes"
             size_hint: 1, .07
             on_press: root.pasar_a_aromas()
         BoxLayout:
@@ -170,8 +170,7 @@
 <Brain>:
     name: 'Brain'
     Button:
-        background_normal: "Brain1.jpg"
-        text: "Pantalla del gif"
+        background_normal: "Imagenes/Brain1.jpg"
         on_press: root.manager.current='Experimentos'
 
 <Experimentos>:
@@ -262,13 +261,6 @@
                 size_hint: 1, .22
                 on_press: root.dismiss()
 
-# <Resultados>:
-#     name: 'Resultados'
-#     id: Resultados
-#     Button:
-#         background_normal: "Resultado.png"
-#         on_press: root.manager.current='Experimentos'
-             
 
 <Personas>:
     name: 'Personas'
@@ -348,66 +340,40 @@
                 on_press: root.dismiss()
 
 
-<Aromas>:
-    name:'Aromas'
+<Imagenes>:
+    name:'Imagenes'
     BoxLayout:
         orientation: 'vertical'
-        ListView:
-            id: ListaArr
-            adapter: ListAdapter(data=main.listaNomAr, cls=main.listadebotones)
-        Button:
-            text: "Crear Aroma"
-            on_press: root.crearAr()
-            size_hint: .3, .1
-
-<AromasPopUp>:
-    id: AromasPopUp
-    title: "Crear Aroma"
-    title_align: 'center'
-    separator_height: 0.9
-    size_hint: .6, 0.5
-    pos_hint: {'x': 0.2, 'top': 0.75}
-    pos: 0, 500
-    BoxLayout:
-        orientation: 'vertical'
-        space: 10
-        TextInput:
-            id: inputNombreA
-            hint_text: "Nombre Aroma"
-            size_hint: 1, .30
-            multiline: False
+        rows: 4
         BoxLayout:
-            orientation: "horizontal"
+            orientation: 'horizontal'
+            space: 5
             Button:
-                id: ButtonCrear
-                text: "Crear"
-                size_hint: 1, .30
-                on_press: root.crearAr(), root.confirmarAroma()
+                background_normal: 'Imagenes/1.jpg'
+                on_press: root.mostrar(self)
             Button:
-                id: ButtonSalirCrear
-                text: "Salir"
-                size_hint: 1, .30
-                on_press: root.dismiss()
-
-<confirmarArPop>:
-    id: confirmarArPopup
-    title: ""
-    title_align: 'center'
-    separator_height: 0
-    size_hint: .4, 0.3
-    pos_hint: {'x': 0.3, 'top': 0.65}
-    pos: 0, 500
-    BoxLayout:
-        orientation: 'vertical'
-        Label:
-            text: "Aroma registrado"
+                background_normal: 'Imagenes/2.jpg'
+                on_press: root.mostrar(self)
+            Button:
+                background_normal: 'Imagenes/3.jpg'
+                on_press: root.mostrar(self)
+            Button:
+                background_normal: 'Imagenes/4.jpg'
+                on_press: root.mostrar(self)
         BoxLayout:
-            orientation: "horizontal"
+            orientation: 'horizontal'
+            cols: 4
+            space: 5
             Button:
-                id: ButtonSalirCrear
-                text: "Salir"
-                size_hint: 1, .22
-                on_press: root.dismiss()
+                background_normal: 'Imagenes/5.jpg'
+                on_press: root.mostrar(self)
+            Label:
+            Label:
+            Label:
+        BoxLayout:
+        BoxLayout:
+            
+
 
         
 <Ssm>:
@@ -417,13 +383,12 @@
     RegisterScreen:
     PantallaScreen:
 <Sm>:
-
     id: Screens
     transition: SlideTransition()
     Brain:
     Experimentos:
     Personas:
-    Aromas:
+    Imagenes:
 <ListItemButton>:
     selected_color: 0, 0, 1, 1
     deselected_color: 0, 0, 0, 1

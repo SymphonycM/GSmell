@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import random
-#import serial
 import kivy
 import pymongo
 from kivy.app import App
@@ -41,8 +40,6 @@ for doc in experimentosDB.find():
 listaNomAr=[]
 for doc in aromasDB.find():
     listaNomAr.append(doc["Nombre"])
-
-#arduino = serial.Serial('COM13', 9600, timeout=.1)
 
 class listadebotones(ListItemButton):
     pass
@@ -110,8 +107,6 @@ class ExperimentoPop(Popup):
                 n = n+1
             y.append(random.uniform(20, 40))
             # añadimos un valor aleatorio a la lista 'y'
-            #data = int(arduino.readline()) #the last bit gets rid of the new-line chars
-            #y.append(data)
             # Estas condiciones las he incluido solo para dibujar los últimos 
             # 10 datos de la lista 'y' ya que quiero que en el gráfico se 
             # vea la evolución de los últimos datos
@@ -198,18 +193,14 @@ class personasPopUp(Popup):
 class confirmarPerPop(Popup):
     pass
 
-class Aromas(Screen):
-    def crearAr(self):
-        Ar = AromasPopUp()
-        Ar.open()
-    def actualizar_lista(self):
-        listaNomAr.clear()
-        for doc in aromasDB.find():
-            listaNomAr.append(doc["Nombre"])
-        self.ids.ListaArr.adapter.data=listaNomAr
-        self.ids.ListaArr._trigger_reset_populate()
-        print("Lista de aromas actualizada")
-    
+class Imagenes(Screen):
+    def mostrar(self, btns):
+        img=Popup(size_hint=(.6, 0.6), pos_hint={'x': 0.2, 'top': 0.75}, title="", separator_height=0)
+        bl=BoxLayout()
+        bl.add_widget(Button(background_normal=btns.background_normal))
+        img.add_widget(bl)
+        img.open()
+
 class AromasPopUp(Popup):
     def crearAr(self):
         new_Ar={
@@ -249,7 +240,7 @@ class MenuPop(Popup):
 
     def pasar_a_aromas(self):
         megaroot=App.get_running_app()
-        megaroot.root.children[0].children[0].children[0].current='Aromas'
+        megaroot.root.children[0].children[0].children[0].current='Imagenes'
         MenuPop.dismiss(self)
 
     def ocultar_menu(self):
