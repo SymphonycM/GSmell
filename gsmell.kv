@@ -294,11 +294,14 @@
             hint_text: "Edad"
             size_hint: 1, .30
             multiline: False
-        TextInput:
-            id: inputGeneroP
-            hint_text: "Genero"
+        BoxLayout:
+            orientation:"horizontal"
             size_hint: 1, .30
-            multiline: False
+            Spinner:
+                id: spinnerIdGenero
+                text: "Seleccionar genero"
+                values: ["Femenino", "Masculino"]
+                on_text: root.listaGeneros(spinnerIdGenero.text)    
         BoxLayout:
             orientation:'horizontal'
             Button:

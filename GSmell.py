@@ -31,6 +31,10 @@ Aroma=[]
 listaAr=[]
 listaPer=[]
 listaNomPer=[]
+
+listaGeneros=[]
+Genero=[]
+
 for doc in personasDB.find():
     listaNomPer.append(doc["Nombre"])
 listaNomExp=[]
@@ -192,14 +196,16 @@ class personasPopUp(Popup):
                     num=num+1
                     self.ids.imgenCP.background_normal='Imagenes/'+str(num)+'.jpg'
         
-        
+
+    def listaGeneros(self, value):
+        Genero.append(value) 
 
     def crearPer(self):
         new_per={
             "Id": self.ids.inputIdP.text,
             "Nombre": self.ids.inputNombreP.text,
             "Edad": self.ids.inputEdadP.text,
-            "Genero": self.ids.inputGeneroP.text
+            "Genero": Genero
         }
         personasDB.insert_one(new_per)
         megaroot=App.get_running_app()
