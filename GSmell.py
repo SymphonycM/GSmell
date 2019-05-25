@@ -27,7 +27,6 @@ usuariosDB=db.Usuarios
 experimentosDB = db.Experimentos
 personasDB = db.Personas
 aromasDB = db.Aromas
-
 Aroma=[]
 listaAr=[]
 listaPer=[]
@@ -40,6 +39,8 @@ for doc in experimentosDB.find():
 listaNomAr=[]
 for doc in aromasDB.find():
     listaNomAr.append(doc["Nombre"])
+
+
 
 class listadebotones(ListItemButton):
     pass
@@ -174,8 +175,25 @@ class Personas(Screen):
         self.ids.ListaPerr.adapter.data=listaNomPer
         self.ids.ListaPerr._trigger_reset_populate()
         print("Lista de personas actualizada")
-        
+
 class personasPopUp(Popup):
+    def evaluarImagen(self):
+        num=int(list(self.ids.imgenCP.background_normal)[9])
+        if num==0:
+            slv=Popup(title="", separator_height=0, size_hint=(.3, .1), pos_hint={'center_x': .5, 'center_y': .5})
+            slv.add_widget(Label(text="Todas las imágenes han sido evaluadas"))
+            slv.open()
+        else:
+            if num==5:
+                num=0
+                self.ids.imgenCP.background_normal='Imagenes/'+str(num)+'.jpg'
+            else:
+                if num<5:
+                    num=num+1
+                    self.ids.imgenCP.background_normal='Imagenes/'+str(num)+'.jpg'
+        
+        
+
     def crearPer(self):
         new_per={
             "Id": self.ids.inputIdP.text,
