@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import random
 import kivy
 import pymongo
+import graf as graficas
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
@@ -31,7 +32,8 @@ Aroma=[]
 listaAr=[]
 listaPer=[]
 listaNomPer=[]
-
+IlusionLikes=[]
+listaLikes=[]
 listaGeneros=[]
 Genero=[]
 
@@ -183,17 +185,25 @@ class Personas(Screen):
 class personasPopUp(Popup):
     def evaluarImagen(self):
         num=int(list(self.ids.imgenCP.background_normal)[9])
+        persona=len(list(personasDB.find()))+1
         if num==0:
-            slv=Popup(title="", separator_height=0, size_hint=(.3, .1), pos_hint={'center_x': .5, 'center_y': .5})
+            slv=Popup(title="", separator_height=0, size_hint=(.4, .1), pos_hint={'center_x': .5, 'center_y': .5})
             slv.add_widget(Label(text="Todas las imágenes han sido evaluadas"))
             slv.open()
         else:
             if num==5:
+                graficas.leer('DatosExperimentos/Persona'+str(persona)+'/'+str(num)+'.1.txt')
+                f=open('DatosExperimentos/Persona'+str(persona)+'/'+str(num)+'.2.lab')
+                IlusionLikes.append(f.read())
                 num=0
                 self.ids.imgenCP.background_normal='Imagenes/'+str(num)+'.jpg'
             else:
                 if num<5:
+                    graficas.leer('DatosExperimentos/Persona'+str(persona)+'/'+str(num)+'.1.txt')
+                    f=open('DatosExperimentos/Persona'+str(persona)+'/'+str(num)+'.2.lab')
+                    IlusionLikes.append(f.read())
                     num=num+1
+                    print(persona)
                     self.ids.imgenCP.background_normal='Imagenes/'+str(num)+'.jpg'
         
 
@@ -201,18 +211,31 @@ class personasPopUp(Popup):
         Genero.append(value) 
 
     def crearPer(self):
-        new_per={
-            "Id": self.ids.inputIdP.text,
-            "Nombre": self.ids.inputNombreP.text,
-            "Edad": self.ids.inputEdadP.text,
-            "Genero": Genero
-        }
-        personasDB.insert_one(new_per)
-        megaroot=App.get_running_app()
-        megaroot.root.children[0].children[0].children[0].children[0].actualizar_lista()
-    def confirmarPersona(self):
-        confirmarPer = confirmarPerPop()
-        confirmarPer.open()
+        num=int(list(self.ids.imgenCP.background_normal)[9])
+        if num==0:
+            new_per={
+                "Id": self.ids.inputIdP.text,
+                "Nombre": self.ids.inputNombreP.text,
+                "Edad": self.ids.inputEdadP.text,
+                "Genero": Genero,
+                "Likes": IlusionLikes
+            }
+            print(IlusionLikes)
+            personasDB.insert_one(new_per)
+            IlusionLikes.clear()
+            megaroot=App.get_running_app()
+            megaroot.root.children[0].children[0].children[0].children[0].actualizar_lista()
+            self.dismiss()
+            confirmarPer = confirmarPerPop()
+            confirmarPer.open() 
+        else:
+            slv=Popup(title="", separator_height=0, size_hint=(.4, .1), pos_hint={'center_x': .5, 'center_y': .5})
+            slv.add_widget(Label(text="Faltan imágenes por evaluar"))
+            slv.open()
+
+    def clear(self):
+        IlusionLikes.clear()
+        print("Limpia")
 
 class confirmarPerPop(Popup):
     pass
@@ -276,8 +299,6 @@ class GSmellApp(App):
         global rooter
         rooter=Ssm()
         return rooter
-
     
-
 if __name__=="__main__":
     GSmellApp().run()

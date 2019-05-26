@@ -276,6 +276,7 @@
     size_hint: .6, 0.7
     pos_hint: {'x': 0.2, 'top': 0.75}
     pos: 0, 500
+    on_dismiss: root.clear()
     BoxLayout:
         orientation: 'vertical'
         space: 10
@@ -319,7 +320,7 @@
                 id: ButtonCrear
                 text: "Crear"
                 size_hint: 1, .7
-                on_press: root.crearPer(), root.confirmarPersona()
+                on_press: root.crearPer()
             Button:
                 id: ButtonSalirCrear
                 text: "Salir"
