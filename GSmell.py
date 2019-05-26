@@ -63,6 +63,7 @@ class LoginScreen(Screen):
             self.ids.loginIncorrectoLabel.text="Correo o contrasena incorrecto"
             self.ids.inputCorreoL.text=""
             self.ids.inputContrasenaL.text=""
+        
 
 class RegisterScreen(Screen):
     def registrar(self):
@@ -77,96 +78,13 @@ class PantallaScreen(Screen):
         menu=MenuPop()
         menu.open()
 
-class Experimentos(Screen):
-    def crear_exp(self):
-        exp = ExperimentoPop()
-        exp.open()
-
-    def actualizar_lista(self):
-        listaNomExp.clear()
-        for doc in experimentosDB.find():
-            listaNomExp.append(doc["Nombre"])
-        self.ids.ListaExpp.adapter.data=listaNomExp
-        self.ids.ListaExpp._trigger_reset_populate()
-        print("Lista de experimentos actualizada")
-        
-class ExperimentoPop(Popup):
-
-    def listPer(self, values):
-        promedio = 0
-        plt.ion() # decimos de forma explícita que sea interactivo
-        b=True
-        y = [] # los datos que vamos a dibujar y a actualizar
-        n=0
-        # el bucle infinito que irá dibujando
-        while b:
-            if n == 90:
-                sum=0
-                for i in range(0,len(y)):
-                    sum=sum+y[i]
-                promedio = sum/len(y)
-                print(promedio)
-                plt.close()
-                b=False
-            else:
-                n = n+1
-            y.append(random.uniform(20, 40))
-            # añadimos un valor aleatorio a la lista 'y'
-            # Estas condiciones las he incluido solo para dibujar los últimos 
-            # 10 datos de la lista 'y' ya que quiero que en el gráfico se 
-            # vea la evolución de los últimos datos
-            if len(y) <= 10:
-                plt.plot(y)
-                plt.xlabel('Tiempo (S)')
-                plt.ylabel('Frecuencia')
-                plt.ylim(20,40)
-                plt.xlim(0,60)
-            else:
-                plt.plot(y[-60:])
-                plt.xlabel('Tiempo (S)')
-                plt.ylabel('Frecuencia')
-                plt.ylim(20,40)
-                plt.xlim(0,60)
-            plt.pause(0.05) # esto pausará el gráfico
-            #con esto se guarda la grafica, se debe reemplazar la ubicacion:
-            plt.savefig('/Users/JLH/Desktop/Resultado.png', transparent=False)
-            plt.cla() # esto limpia la información del axis (el área blanca donde
-                    # se pintan las cosas.
-        plt.close()
-        listaPer.append([values, promedio])
-      
-    def listAr(self, value):
-        Aroma.append(value)
-    
-    def registrarExp(self):
-        new_exp={
-            "Empresa": self.ids.inputEmpresaL.text,
-            "Nombre": self.ids.inputNombreL.text,
-            "Personas": listaPer,
-            "Aromas": Aroma
-        }
-        experimentosDB.insert_one(new_exp)
-        megaroot=App.get_running_app()
-        megaroot.root.children[0].children[0].children[0].children[0].actualizar_lista()
-
-    def confirmar_exp(self):
-        confirmarExp = confirmarExpPop()
-        confirmarExp.open()
-
-    def verResultadosExp(self):
-        megaroot=App.get_running_app()
-        megaroot.root.children[0].children[0].children[0].current='Resultados'
-        self.dismiss()
-
-class confirmarExpPop(Popup):
-    pass
-
 class Resultados(Screen):
     pass
 
 class Brain(Screen):
     pass
-
+class Estadisticas(Screen):
+    pass
 class Personas(Screen):
     def crearPer(self):
         per = personasPopUp()
@@ -252,9 +170,9 @@ class MenuPop(Popup):
         megaroot.root.current='LoginScreen'
         self.dismiss()
 
-    def pasar_a_experimentos(self):
+    def pasar_a_estadisticas(self):
         megaroot=App.get_running_app()
-        megaroot.root.children[0].children[0].children[0].current='Experimentos'
+        megaroot.root.children[0].children[0].children[0].current='Estadisticas'
         MenuPop.dismiss(self)
 
     def pasar_a_personas(self):

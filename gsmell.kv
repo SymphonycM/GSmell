@@ -30,7 +30,7 @@
                 on_press: root.mostrar_menu()
             Label:
                 id: textoPantalla
-                text: "GSmell"
+                text: "ALCE"
                 font_color: 0,1,0,1
                 size_hint: .15, 1
             BoxLayout:
@@ -138,10 +138,10 @@
         orientation: 'vertical'
         space: 10
         Button:
-            id: ButtonExperimentos
-            text:"Experimentos"
+            id: ButtonEstadisticas
+            text:"Estadisticas"
             size_hint: 1, .07
-            on_press: root.pasar_a_experimentos()
+            on_press: root.pasar_a_estadisticas()
         Button:
             id: ButtonPersonas
             text:"Personas"
@@ -166,96 +166,8 @@
     Button:
         background_normal: "Imagenes/Brain1.jpg"
         on_press: root.manager.current='Experimentos'
-
-<Experimentos>:
-    name: 'Experimentos'
-    BoxLayout:
-        orientation: 'vertical'
-        space: 10
-        ListView:
-            id: ListaExpp
-            adapter: ListAdapter(data=main.listaNomExp, cls=main.listadebotones)
-        Button:
-            size_hint: .3, .1
-            text: "Crear experimento "
-            on_press: root.crear_exp()
-
-<ExperimentoPop>:
-    id: ExperimentoPopup
-    title: "Crear experimento"
-    title_align: 'center'
-    separator_height: 0.9
-    size_hint: .6, 0.5
-    pos_hint: {'x': 0.2, 'top': 0.75}
-    pos: 0, 500
-    BoxLayout:
-        orientation: 'vertical'
-        space: 10
-        TextInput:
-            id: inputEmpresaL
-            hint_text: "Nombre empresa"
-            size_hint: 1, .30
-            multiline: False
-        TextInput:
-            id: inputNombreL
-            hint_text: "Nombre experimento"
-            size_hint: 1, .30
-            multiline: False
-        BoxLayout:
-            orientation:"horizontal"
-            size_hint: 1, .30
-            Spinner:
-                id: spinnerId
-                text: "Seleccionar personas"
-                values: ["Persona1", "Persona2", "Persona3", "Persona4", "Persona5"]
-                on_text: root.listPer(spinnerId.text)
-        BoxLayout:
-            orientation:"horizontal"
-            size_hint: 1, .30
-            Spinner:
-                text: "Seleccionar aroma"
-                values: ["Aroma1", "Aroma2"]
-                id: spinnerIdar
-                on_text: root.listAr(spinnerIdar.text)
-        BoxLayout:
-            orientation: "horizontal"
-            Button:
-                id: ButtonCrear
-                text: "Crear"
-                size_hint: 1, .30
-                on_press: root.registrarExp(), root.confirmar_exp()
-            Button:
-                id: ButtonSalirCrear
-                text: "Salir"
-                size_hint: 1, .30
-                on_press: root.dismiss()
-            Button:
-                id: ButtonVerResultados
-                text: "Resultados"
-                size_hint: 1, .30
-                on_press: root.verResultadosExp()
-
-<confirmarExpPop>:
-    id: confirmarExpPopup
-    title: ""
-    title_align: 'center'
-    separator_height: 0
-    size_hint: .4, 0.3
-    pos_hint: {'x': 0.4, 'top': 0.55}
-    pos: 0, 500
-    BoxLayout:
-        orientation: 'vertical'
-        Label:
-            text: "Experiemento creado"
-        BoxLayout:
-            orientation: "horizontal"
-            Button:
-                id: ButtonSalirCrear
-                text: "Salir"
-                size_hint: 1, .22
-                on_press: root.dismiss()
-
-
+<Estadisticas>:
+    name: 'Estadisticas'
 <Personas>:
     name: 'Personas'
     BoxLayout:
@@ -394,7 +306,7 @@
     id: Screens
     transition: SlideTransition()
     Brain:
-    Experimentos:
+    Estadisticas:
     Personas:
     Imagenes:
 <ListItemButton>:
