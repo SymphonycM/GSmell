@@ -175,10 +175,21 @@
         ListView:
             id: ListaPerr
             adapter: ListAdapter(data=main.listaNomPer, cls=main.listadebotones)
-        Button:
-            text: "Crear persona"
-            on_press: root.crearPer()
-            size_hint: .3, .1
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, .1
+            Button:
+                text: "Crear persona"
+                on_press: root.crearPer()
+                size_hint: .33, 1
+            Button:
+                text: "Datos"
+                size_hint: .33, 1
+                on_press: root.ver(ListaPerr.adapter.selection[0].text)
+            Button:
+                text: "Limpiar datos"
+                size_hint: .33, 1
+                on_press: root.limpiarDatos()
 
 <personasPopUp>:
     id: personasPopUp
