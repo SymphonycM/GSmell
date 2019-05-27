@@ -17,7 +17,7 @@
         id: PantallaLayout
         orientation: 'vertical'
         rows: 2
-        color: 1,1,1,1
+        color: 1,0.9,0.8,1
         BoxLayout:
             orientation: 'horizontal'
             id: upperBar
@@ -168,6 +168,88 @@
         on_press: root.manager.current='Experimentos'
 <Estadisticas>:
     name: 'Estadisticas'
+    canvas:
+        Color:
+            rgb: 1,1,1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        orientation: 'vertical'
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, .07
+            canvas:
+                Color:
+                    rgb: 0, 0.7, 0.9
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                Label:
+                    id: label2
+                    color: 0,0,0,1
+                    text: 'Busqueda'
+                    size_hint: None, 1
+                    width: 155
+                Spinner:
+                    id: spinner_genero
+                    text: 'Genero'
+                    values: ['Masculino', 'Femenino']
+                    size_hint: None, 1
+                    width: 155
+                    on_text: root.drop_down_list_gen(spinner_genero.text)
+                Spinner:
+                    id: spinner_rango
+                    text: 'Edad'
+                    values: ['18-29', '30-55', '56-75']
+                    size_hint: None, 1
+                    width: 155
+                    on_text: root.drop_down_list_ran(spinner_rango.text)
+                Button:
+                    size_hint: None, 1
+                    width: 155
+                    text: "Refrescar"
+                    on_press: root.actualizar()
+                
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, .93
+            rows: 3
+            canvas:
+                Color:
+                    rgb: 1,1,1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                orientation: 'horizontal'
+                space: 5
+                Button:
+                    background_normal: 'Graficas/fig0.jpg'
+                    on_press: root.mostrar(self)
+                Button:
+                    background_normal: 'Graficas/fig1.jpg'
+                    on_press: root.mostrar(self)
+                Button:
+                    background_normal: 'Graficas/fig2.jpg'
+                    on_press: root.mostrar(self)
+            BoxLayout:
+                orientation: 'horizontal'
+                cols: 3
+                space: 5
+                Button:
+                    background_normal: 'Graficas/fig3.jpg'
+                    on_press: root.mostrar(self)
+                Button:
+                    background_normal: 'Graficas/fig4.jpg'
+                    on_press: root.mostrar(self)
+                Label:
+            BoxLayout:
+            
+            
 <Personas>:
     name: 'Personas'
     BoxLayout:
@@ -175,21 +257,10 @@
         ListView:
             id: ListaPerr
             adapter: ListAdapter(data=main.listaNomPer, cls=main.listadebotones)
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint: 1, .1
-            Button:
-                text: "Crear persona"
-                on_press: root.crearPer()
-                size_hint: .33, 1
-            Button:
-                text: "Datos"
-                size_hint: .33, 1
-                on_press: root.ver(ListaPerr.adapter.selection[0].text)
-            Button:
-                text: "Limpiar datos"
-                size_hint: .33, 1
-                on_press: root.limpiarDatos()
+        Button:
+            text: "Crear persona"
+            on_press: root.crearPer()
+            size_hint: .3, .1
 
 <personasPopUp>:
     id: personasPopUp
@@ -322,5 +393,5 @@
     Imagenes:
 <ListItemButton>:
     selected_color: 0, 0, 1, 1
-    deselected_color: 0, 0, 0, 1
+    deselected_color: 1, 0.9, 0.8, 1
     Resultados:
