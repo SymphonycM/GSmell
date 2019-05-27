@@ -19,7 +19,6 @@ from kivy.uix.listview import ListItemButton
 from kivy.adapters.listadapter import ListAdapter
 from pymongo import MongoClient
 
-Window.clearcolor= (0.5, 0.5, 0.5, 1)
 
 client=MongoClient('mongodb+srv://GSmell:gsmellalce1@cluster0-sgq75.mongodb.net/test?retryWrites=true')
 db=client.GSmell
@@ -35,7 +34,7 @@ listaNomPer=[]
 IlusionLikes=[]
 listaLikes=[]
 listaGeneros=[]
-Genero=[]
+Genero=""
 
 for doc in personasDB.find():
     listaNomPer.append(doc["Nombre"])
@@ -64,8 +63,7 @@ class LoginScreen(Screen):
         else:
             self.ids.loginIncorrectoLabel.text="Correo o contrasena incorrecto"
             self.ids.inputCorreoL.text=""
-            self.ids.inputContrasenaL.text=""
-        
+            self.ids.inputContrasenaL.text=""    
 
 class RegisterScreen(Screen):
     def registrar(self):
@@ -85,8 +83,10 @@ class Resultados(Screen):
 
 class Brain(Screen):
     pass
+
 class Estadisticas(Screen):
     pass
+
 class Personas(Screen):
     def crearPer(self):
         per = personasPopUp()
@@ -125,9 +125,6 @@ class personasPopUp(Popup):
                     self.ids.imgenCP.background_normal='Imagenes/'+str(num)+'.jpg'
         
 
-    def listaGeneros(self, value):
-        Genero.append(value) 
-
     def crearPer(self):
         num=int(list(self.ids.imgenCP.background_normal)[9])
         if num==0:
@@ -135,7 +132,7 @@ class personasPopUp(Popup):
                 "Id": self.ids.inputIdP.text,
                 "Nombre": self.ids.inputNombreP.text,
                 "Edad": self.ids.inputEdadP.text,
-                "Genero": Genero,
+                "Genero": self.ids.spinnerIdGenero.text,
                 "Likes": IlusionLikes
             }
             print(IlusionLikes)
