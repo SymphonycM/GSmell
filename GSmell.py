@@ -41,6 +41,13 @@ Genero=[]
 
 for doc in personasDB.find():
     listaNomPer.append(doc["Nombre"])
+
+for doc in personasDB.find():
+    listaEdadPer.append(doc["Edad"])
+
+for doc in personasDB.find():
+    listaGenPer.append(doc["Genero"])
+
 listaNomExp=[]
 for doc in experimentosDB.find():
     listaNomExp.append(doc["Nombre"])
