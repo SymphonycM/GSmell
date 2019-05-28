@@ -19,7 +19,8 @@ from kivy.uix.listview import ListItemButton
 from kivy.adapters.listadapter import ListAdapter
 from pymongo import MongoClient
 from matplotlib import pyplot
-color = 0.8, 0.9, 0.6,1
+#color = 0.8, 0.9, 0.6,1
+color = 0.55, 0.55, 0.55, 1
 Window.clearcolor=(color)
 
 client=MongoClient('mongodb+srv://GSmell:gsmellalce1@cluster0-sgq75.mongodb.net/test?retryWrites=true')
