@@ -4,6 +4,7 @@ import random
 import kivy
 import pymongo
 import graf as graficas
+import os
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
@@ -41,7 +42,7 @@ listaLikes=[]
 listaGeneros=[]
 arrayLike=[]
 listaTotalPer= personasDB.find()
-Genero=""
+
 
 for doc in personasDB.find():
     listaNomPer.append(doc["Nombre"])
@@ -52,12 +53,7 @@ for doc in personasDB.find():
 for doc in personasDB.find():
     listaGenPer.append(doc["Genero"])
 
-listaNomExp=[]
-for doc in experimentosDB.find():
-    listaNomExp.append(doc["Nombre"])
-listaNomAr=[]
-for doc in aromasDB.find():
-    listaNomAr.append(doc["Nombre"])
+
 
 
 
@@ -316,6 +312,36 @@ estadis = Estadisticas()
 estadis.actualizar()
 
 class Personas(Screen):
+    def ver(self, nom):
+        nlikes=0
+        persona=[]
+        likesitos=[]
+        tipo=personasDB.find({"Nombre":nom})
+        for x in tipo:
+            persona.append(x["Id"])
+            persona.append(x["Nombre"])
+            persona.append(x["Edad"])
+            persona.append(x["Genero"])
+            likesitos=x["Likes"]
+        for n in likesitos:
+            if n=="Like":
+                nlikes=nlikes+1
+        labels="like", "Dislike"
+        plt.pie([nlikes, len(likesitos)-nlikes], labels=labels, autopct='%1.1f%%', shadow=True, startangle=130)
+        plt.savefig("mostranding.jpg")
+        plt.close()
+        img=Popup(size_hint=(.6, .6), pos_hint={'x': 0.2, 'top': 0.85}, title="", separator_height=0)
+        bl=BoxLayout(orientation='vertical', space=5)
+        bl.add_widget(Label(text="Id:"+persona[0], size_hint=(1, .05), halign='left'))
+        bl.add_widget(Label(text="Nombre:"+persona[1], size_hint=(1, .05), halign='left'))
+        bl.add_widget(Label(text="Edad:"+persona[2], size_hint=(1, .05), halign='left'))
+        bl.add_widget(Label(text="Genero:"+persona[3], size_hint=(1, .05), halign='left'))
+        bl2=BoxLayout(orientation='horizontal', cols=2)
+        bl2.add_widget(Label(text="Resultados por imagenes:\n1: "+likesitos[0]+"\n2: "+likesitos[1]+"\n3: "+likesitos[2]+"\n4: "+likesitos[3]+"\n5: "+likesitos[4]))
+        bl2.add_widget(Button(background_normal='mostranding.jpg', size_hint=(1, .7)))
+        bl.add_widget(bl2)
+        img.add_widget(bl)
+        img.open()
     def crearPer(self):
         per = personasPopUp()
         per.open()
@@ -327,6 +353,14 @@ class Personas(Screen):
         self.ids.ListaPerr.adapter.data=listaNomPer
         self.ids.ListaPerr._trigger_reset_populate()
         print("Lista de personas actualizada")
+    
+    def limpiarDatos(self):
+        personasDB.delete_many({})
+        megaroot=App.get_running_app()
+        megaroot.root.children[0].children[0].children[0].children[0].actualizar_lista()
+        slv=Popup(title="", separator_height=0, size_hint=(.4, .1), pos_hint={'center_x': .5, 'center_y': .5})
+        slv.add_widget(Label(text="Datos borrados"))
+        slv.open()
 
 class personasPopUp(Popup):
     def evaluarImagen(self):

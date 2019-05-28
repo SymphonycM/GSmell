@@ -25,11 +25,13 @@
             size_hint: 1, .05
             Button:
                 id: menuButton
+                color: 0,0,0,1
                 text: "Menu"
                 size_hint: .07, 1
                 on_press: root.mostrar_menu()
             Label:
                 id: textoPantalla
+                color: 0,0,0,1
                 text: "ALCE"
                 font_color: 0,1,0,1
                 size_hint: .15, 1
@@ -37,6 +39,7 @@
                 
             Button:
                 id: srchButton
+                color: 0,0,0,1
                 text: "Srch"
                 size_hint: .07, 1
 
@@ -55,6 +58,7 @@
         pos_hint: {'center_x': .5, 'center_y': .5}
         Label:
             id:LoginLabel
+            color: 0,0,0,1
             text: "Login"
             size_hint: 1, .1
         TextInput:
@@ -69,20 +73,24 @@
             size_hint: 1, .2
             multiline: False
         Button:
+            color: 0,0,0,1
             text: "Ingresar"
             size_hint: 1, .2
             on_press: root.validar_login()
         Label:
             id: loginIncorrectoLabel
+            color: 0,0,0,1
             text:""
             size_hint: 1, .2
         BoxLayout:
             size_hint: 1, .1
             orientation: 'horizontal'
             Label:
+                color: 0,0,0,1
                 text: "No tienes cuenta?"
             Button:
                 id: linkRegistro
+                color: 0,0,0,1
                 text: "Registrate!"
                 on_press:  root.manager.current='RegisterScreen'
 
@@ -97,6 +105,7 @@
         pos_hint: {'center_x': .5, 'center_y': .5}
         Label:
             id: RegisterLabel
+            color: 0,0,0,1
             text: "Registro"
             size_hint: 1, .1
         TextInput:
@@ -111,6 +120,7 @@
             multiline: False
         Button:
             id: ButtonRegistrarse
+            color: 0,0,0,1
             text: "Registrarse"
             size_hint: 1, .2
             on_press: root.registrar()
@@ -121,9 +131,11 @@
             size_hint: 1, .1
             orientation: 'horizontal'
             Label:
+                color: 0,0,0,1
                 text: "Ya tienes una cuenta?"
             Button:
                 id: linkLogin
+                color: 0,0,0,1
                 text: "Ingresa!"
                 on_press: root.manager.current='LoginScreen'
 
@@ -139,16 +151,19 @@
         space: 10
         Button:
             id: ButtonEstadisticas
+            color: 0,0,0,1
             text:"Estadisticas"
             size_hint: 1, .07
             on_press: root.pasar_a_estadisticas()
         Button:
             id: ButtonPersonas
+            color: 0,0,0,1
             text:"Personas"
             size_hint: 1, .07
             on_press: root.pasar_a_personas()
         Button:
             id: ButtonAromas
+            color: 0,0,0,1
             text: "Imagenes"
             size_hint: 1, .07
             on_press: root.pasar_a_aromas()
@@ -156,6 +171,7 @@
 
         Button:
             id: ButtonSalir
+            color: 0,0,0,1
             text: "Salir"
             size_hint: 1, .07
             on_press: root.salir()
@@ -210,6 +226,7 @@
                 Button:
                     size_hint: None, 1
                     width: 155
+                    color: 0,0,0,1
                     text: "Refrescar"
                     on_press: root.actualizar()
                 
@@ -257,10 +274,24 @@
         ListView:
             id: ListaPerr
             adapter: ListAdapter(data=main.listaNomPer, cls=main.listadebotones)
-        Button:
-            text: "Crear persona"
-            on_press: root.crearPer()
-            size_hint: .3, .1
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, .1
+            Button:
+                color: 0,0,0,1
+                text: "Crear persona"
+                on_press: root.crearPer()
+                size_hint: .33, 1
+            Button:
+                color: 0,0,0,1
+                text: "Datos"
+                size_hint: .33, 1
+                on_press: root.ver(ListaPerr.adapter.selection[0].text)
+            Button:
+                color: 0,0,0,1
+                text: "Limpiar datos"
+                size_hint: .33, 1
+                on_press: root.limpiarDatos()
 
 <personasPopUp>:
     id: personasPopUp
@@ -303,6 +334,7 @@
                 background_normal: 'Imagenes/1.jpg'
                 size_hint: .5, .9
             Button:
+                color: 0,0,0,1
                 text: "Evaluar"
                 on_press: root.evaluarImagen()
                 size_hint: .3, .2
@@ -311,11 +343,13 @@
             size_hint: 1, .3
             Button:
                 id: ButtonCrear
+                color: 0,0,0,1
                 text: "Crear"
                 size_hint: 1, .7
                 on_press: root.crearPer()
             Button:
                 id: ButtonSalirCrear
+                color: 0,0,0,1
                 text: "Salir"
                 size_hint: 1, .7
                 on_press: root.dismiss()
@@ -332,11 +366,13 @@
     BoxLayout:
         orientation: 'vertical'
         Label:
+            color: 0,0,0,1
             text: "Persona registrada"
         BoxLayout:
             orientation: "horizontal"
             Button:
                 id: ButtonSalirCrear
+                color: 0,0,0,1
                 text: "Salir"
                 size_hint: 1, .22
                 on_press: root.dismiss()
