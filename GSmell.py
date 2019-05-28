@@ -21,8 +21,7 @@ from kivy.uix.listview import ListItemButton
 from kivy.adapters.listadapter import ListAdapter
 from pymongo import MongoClient
 from matplotlib import pyplot
-#color = 0.8, 0.9, 0.6,1
-color = 0.55, 0.55, 0.55, 1
+color = 1, 1, 1,1
 Window.clearcolor=(color)
 
 client=MongoClient('mongodb+srv://GSmell:gsmellalce1@cluster0-sgq75.mongodb.net/test?retryWrites=true')
@@ -31,9 +30,6 @@ evaluadosDB=db.Evaluados
 usuariosDB=db.Usuarios
 experimentosDB = db.Experimentos
 personasDB = db.Personas
-aromasDB = db.Aromas
-Aroma=[]
-listaAr=[]
 listaPer=[]
 listaNomPer=[]
 listaGenPer=[]
@@ -42,7 +38,6 @@ IlusionLikes=[]
 listaLikes=[]
 listaGeneros=[]
 arrayLike=[]
-listaTotalPer= personasDB.find()
 
 
 for doc in personasDB.find():
@@ -95,7 +90,7 @@ class Estadisticas(Screen):
     def actualizar(self):
         dove = 0
         iphone = 0
-        mcdonals = 0
+        mcdonalds = 0
         coca = 0
         yogurt = 0
         for doc in personasDB.find():
@@ -103,7 +98,7 @@ class Estadisticas(Screen):
             for i in range(len(arrayLike)):
                 if i==0 and arrayLike[i] == 'Like': dove= dove+1
                 if i==1 and arrayLike[i] == 'Like': iphone = iphone + 1
-                if i==2 and arrayLike[i] == 'Like': mcdonals= mcdonals+1
+                if i==2 and arrayLike[i] == 'Like': mcdonalds= mcdonalds+1
                 if i==3 and arrayLike[i] == 'Like': coca = coca+1
                 if i==4 and arrayLike[i] == 'Like': yogurt = yogurt+1
         labels = 'Like', 'Dislike'
@@ -127,12 +122,12 @@ class Estadisticas(Screen):
         plt.close()    
             
         labels = 'Like', 'Dislike'
-        sizes = [mcdonals, len(listaNomPer) - mcdonals]
+        sizes = [mcdonalds, len(listaNomPer) - mcdonalds]
         colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
-        plt.title(u"Marca McDonal's")
+        plt.title(u"Marca McDonald's")
         plt.savefig("Graficas/fig2.png")
         plt.close()
 
@@ -160,7 +155,7 @@ class Estadisticas(Screen):
         contador = 0
         dove = 0
         iphone = 0
-        mcdonals = 0
+        mcdonalds = 0
         coca = 0
         yogurt = 0
         for doc in generoPer:
@@ -170,7 +165,7 @@ class Estadisticas(Screen):
             for i in range(len(arrayLike)):
                 if i==0 and arrayLike[i] == 'Like': dove= dove+1
                 if i==1 and arrayLike[i] == 'Like': iphone = iphone + 1
-                if i==2 and arrayLike[i] == 'Like': mcdonals= mcdonals+1
+                if i==2 and arrayLike[i] == 'Like': mcdonalds= mcdonalds+1
                 if i==3 and arrayLike[i] == 'Like': coca = coca+1
                 if i==4 and arrayLike[i] == 'Like': yogurt = yogurt+1
         labels = 'Like', 'Dislike'
@@ -194,12 +189,12 @@ class Estadisticas(Screen):
         plt.close()    
             
         labels = 'Like', 'Dislike'
-        sizes = [mcdonals, contador - mcdonals]
+        sizes = [mcdonalds, contador - mcdonalds]
         colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
-        plt.title(u"Marca McDonal's")
+        plt.title(u"Marca McDonald's")
         plt.savefig("Graficas/fig2.png")
         plt.close()
 
@@ -230,7 +225,7 @@ class Estadisticas(Screen):
         contador = 0
         dove = 0
         iphone = 0
-        mcdonals = 0
+        mcdonalds = 0
         coca = 0
         yogurt = 0
         for doc in personasDB.find():
@@ -244,7 +239,7 @@ class Estadisticas(Screen):
             for i in range(len(arrayLike)):
                 if i==0 and arrayLike[i] == 'Like': dove= dove+1
                 if i==1 and arrayLike[i] == 'Like': iphone = iphone + 1
-                if i==2 and arrayLike[i] == 'Like': mcdonals= mcdonals+1
+                if i==2 and arrayLike[i] == 'Like': mcdonalds= mcdonalds+1
                 if i==3 and arrayLike[i] == 'Like': coca = coca+1
                 if i==4 and arrayLike[i] == 'Like': yogurt = yogurt+1
         labels = 'Like', 'Dislike'
@@ -268,12 +263,12 @@ class Estadisticas(Screen):
         plt.close()    
             
         labels = 'Like', 'Dislike'
-        sizes = [mcdonals, contador - mcdonals]
+        sizes = [mcdonalds, contador - mcdonalds]
         colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
-        plt.title(u"Marca McDonal's")
+        plt.title(u"Marca McDonald's")
         plt.savefig("Graficas/fig2.png")
         plt.close()
 
@@ -323,7 +318,7 @@ class Personas(Screen):
                 nlikes=nlikes+1
         labels="like", "Dislike"
         plt.pie([nlikes, len(likesitos)-nlikes], labels=labels, autopct='%1.1f%%', shadow=True, startangle=130)
-        plt.savefig("mostranding.jpg")
+        plt.savefig("mostranding.png")
         plt.close()
         img=Popup(size_hint=(.6, .6), pos_hint={'x': 0.2, 'top': 0.85}, title="", separator_height=0)
         bl=BoxLayout(orientation='vertical', space=5)
