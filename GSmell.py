@@ -115,7 +115,7 @@ class Estadisticas(Screen):
                 if i==4 and arrayLike[i] == 'Like': yogurt = yogurt+1
         labels = 'Like', 'Dislike'
         sizes = [dove, len(listaNomPer) - dove]
-        colors = ['lightcoral', 'gold']
+        colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
@@ -125,7 +125,7 @@ class Estadisticas(Screen):
 
         labels = 'Like', 'Dislike'
         sizes = [iphone, len(listaNomPer) - iphone]
-        colors = ['lightcoral', 'gold']
+        colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
@@ -135,7 +135,7 @@ class Estadisticas(Screen):
             
         labels = 'Like', 'Dislike'
         sizes = [mcdonals, len(listaNomPer) - mcdonals]
-        colors = ['lightcoral', 'gold']
+        colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
@@ -145,7 +145,7 @@ class Estadisticas(Screen):
 
         labels = 'Like', 'Dislike'
         sizes = [coca, len(listaNomPer) - coca]
-        colors = ['lightcoral', 'gold']
+        colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
@@ -155,7 +155,7 @@ class Estadisticas(Screen):
 
         labels = 'Like', 'Dislike'
         sizes = [yogurt, len(listaNomPer) - yogurt]
-        colors = ['lightcoral', 'gold']
+        colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
@@ -182,7 +182,7 @@ class Estadisticas(Screen):
                 if i==4 and arrayLike[i] == 'Like': yogurt = yogurt+1
         labels = 'Like', 'Dislike'
         sizes = [dove, contador - dove]
-        colors = ['lightcoral', 'gold']
+        colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
@@ -192,7 +192,7 @@ class Estadisticas(Screen):
 
         labels = 'Like', 'Dislike'
         sizes = [iphone, contador - iphone]
-        colors = ['lightcoral', 'gold']
+        colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
@@ -202,7 +202,7 @@ class Estadisticas(Screen):
             
         labels = 'Like', 'Dislike'
         sizes = [mcdonals, contador - mcdonals]
-        colors = ['lightcoral', 'gold']
+        colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
@@ -212,7 +212,7 @@ class Estadisticas(Screen):
 
         labels = 'Like', 'Dislike'
         sizes = [coca, contador - coca]
-        colors = ['lightcoral', 'gold']
+        colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
@@ -222,7 +222,7 @@ class Estadisticas(Screen):
 
         labels = 'Like', 'Dislike'
         sizes = [yogurt, contador - yogurt]
-        colors = ['lightcoral', 'gold']
+        colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
@@ -256,7 +256,7 @@ class Estadisticas(Screen):
                 if i==4 and arrayLike[i] == 'Like': yogurt = yogurt+1
         labels = 'Like', 'Dislike'
         sizes = [dove, contador - dove]
-        colors = ['lightcoral', 'gold']
+        colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
@@ -266,7 +266,7 @@ class Estadisticas(Screen):
 
         labels = 'Like', 'Dislike'
         sizes = [iphone, contador - iphone]
-        colors = ['lightcoral', 'gold']
+        colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
@@ -276,7 +276,7 @@ class Estadisticas(Screen):
             
         labels = 'Like', 'Dislike'
         sizes = [mcdonals, contador - mcdonals]
-        colors = ['lightcoral', 'gold']
+        colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
@@ -296,7 +296,7 @@ class Estadisticas(Screen):
 
         labels = 'Like', 'Dislike'
         sizes = [yogurt, contador - yogurt]
-        colors = ['lightcoral', 'gold']
+        colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
