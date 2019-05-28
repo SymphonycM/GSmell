@@ -20,7 +20,7 @@ from kivy.uix.listview import ListItemButton
 from kivy.adapters.listadapter import ListAdapter
 from pymongo import MongoClient
 from matplotlib import pyplot
-color = 0.8, 0.9, 0.6,1
+color = 1, 1, 1,1
 Window.clearcolor=(color)
 
 client=MongoClient('mongodb+srv://GSmell:gsmellalce1@cluster0-sgq75.mongodb.net/test?retryWrites=true')
@@ -29,9 +29,6 @@ evaluadosDB=db.Evaluados
 usuariosDB=db.Usuarios
 experimentosDB = db.Experimentos
 personasDB = db.Personas
-aromasDB = db.Aromas
-Aroma=[]
-listaAr=[]
 listaPer=[]
 listaNomPer=[]
 listaGenPer=[]
@@ -40,7 +37,6 @@ IlusionLikes=[]
 listaLikes=[]
 listaGeneros=[]
 arrayLike=[]
-listaTotalPer= personasDB.find()
 
 
 for doc in personasDB.find():
@@ -424,20 +420,6 @@ class Imagenes(Screen):
         img.add_widget(bl)
         img.open()
 
-class AromasPopUp(Popup):
-    def crearAr(self):
-        new_Ar={
-            "Nombre": self.ids.inputNombreA.text,
-        }
-        aromasDB.insert_one(new_Ar)
-        megaroot=App.get_running_app()
-        megaroot.root.children[0].children[0].children[0].children[0].actualizar_lista()
-    def confirmarAroma(self):
-        confirmarAr = confirmarArPop()
-        confirmarAr.open()
-
-class confirmarArPop(Popup):
-    pass
 
 class Sm(ScreenManager):
     pass
