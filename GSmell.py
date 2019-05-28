@@ -93,7 +93,7 @@ class Estadisticas(Screen):
     def actualizar(self):
         dove = 0
         iphone = 0
-        mcdonals = 0
+        mcdonalds = 0
         coca = 0
         yogurt = 0
         for doc in personasDB.find():
@@ -101,7 +101,7 @@ class Estadisticas(Screen):
             for i in range(len(arrayLike)):
                 if i==0 and arrayLike[i] == 'Like': dove= dove+1
                 if i==1 and arrayLike[i] == 'Like': iphone = iphone + 1
-                if i==2 and arrayLike[i] == 'Like': mcdonals= mcdonals+1
+                if i==2 and arrayLike[i] == 'Like': mcdonalds= mcdonalds+1
                 if i==3 and arrayLike[i] == 'Like': coca = coca+1
                 if i==4 and arrayLike[i] == 'Like': yogurt = yogurt+1
         labels = 'Like', 'Dislike'
@@ -111,7 +111,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Dove')
-        plt.savefig("Graficas/fig0.jpg")
+        plt.savefig("Graficas/fig0.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -121,17 +121,17 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca iPhone')
-        plt.savefig("Graficas/fig1.jpg")
+        plt.savefig("Graficas/fig1.png")
         plt.close()    
             
         labels = 'Like', 'Dislike'
-        sizes = [mcdonals, len(listaNomPer) - mcdonals]
+        sizes = [mcdonalds, len(listaNomPer) - mcdonalds]
         colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
-        plt.title(u"Marca McDonal's")
-        plt.savefig("Graficas/fig2.jpg")
+        plt.title(u"Marca McDonald's")
+        plt.savefig("Graficas/fig2.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -141,7 +141,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Caca-Cola')
-        plt.savefig("Graficas/fig3.jpg")
+        plt.savefig("Graficas/fig3.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -151,14 +151,14 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Yogurt')
-        plt.savefig("Graficas/fig4.jpg")
+        plt.savefig("Graficas/fig4.png")
         plt.close()
     def drop_down_list_gen(self, value):
         generoPer = personasDB.find({"Genero": value})
         contador = 0
         dove = 0
         iphone = 0
-        mcdonals = 0
+        mcdonalds = 0
         coca = 0
         yogurt = 0
         for doc in generoPer:
@@ -168,7 +168,7 @@ class Estadisticas(Screen):
             for i in range(len(arrayLike)):
                 if i==0 and arrayLike[i] == 'Like': dove= dove+1
                 if i==1 and arrayLike[i] == 'Like': iphone = iphone + 1
-                if i==2 and arrayLike[i] == 'Like': mcdonals= mcdonals+1
+                if i==2 and arrayLike[i] == 'Like': mcdonalds= mcdonalds+1
                 if i==3 and arrayLike[i] == 'Like': coca = coca+1
                 if i==4 and arrayLike[i] == 'Like': yogurt = yogurt+1
         labels = 'Like', 'Dislike'
@@ -178,7 +178,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Dove')
-        plt.savefig("Graficas/fig0.jpg")
+        plt.savefig("Graficas/fig0.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -188,17 +188,17 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca iPhone')
-        plt.savefig("Graficas/fig1.jpg")
+        plt.savefig("Graficas/fig1.png")
         plt.close()    
             
         labels = 'Like', 'Dislike'
-        sizes = [mcdonals, contador - mcdonals]
+        sizes = [mcdonalds, contador - mcdonalds]
         colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
-        plt.title(u"Marca McDonal's")
-        plt.savefig("Graficas/fig2.jpg")
+        plt.title(u"Marca McDonald's")
+        plt.savefig("Graficas/fig2.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -208,7 +208,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Caca-Cola')
-        plt.savefig("Graficas/fig3.jpg")
+        plt.savefig("Graficas/fig3.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -218,7 +218,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Yogurt')
-        plt.savefig("Graficas/fig4.jpg")
+        plt.savefig("Graficas/fig4.png")
         plt.close()
     def drop_down_list_ran(self, value):
         personas = []
@@ -228,7 +228,7 @@ class Estadisticas(Screen):
         contador = 0
         dove = 0
         iphone = 0
-        mcdonals = 0
+        mcdonalds = 0
         coca = 0
         yogurt = 0
         for doc in personasDB.find():
@@ -242,7 +242,7 @@ class Estadisticas(Screen):
             for i in range(len(arrayLike)):
                 if i==0 and arrayLike[i] == 'Like': dove= dove+1
                 if i==1 and arrayLike[i] == 'Like': iphone = iphone + 1
-                if i==2 and arrayLike[i] == 'Like': mcdonals= mcdonals+1
+                if i==2 and arrayLike[i] == 'Like': mcdonalds= mcdonalds+1
                 if i==3 and arrayLike[i] == 'Like': coca = coca+1
                 if i==4 and arrayLike[i] == 'Like': yogurt = yogurt+1
         labels = 'Like', 'Dislike'
@@ -252,7 +252,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Dove')
-        plt.savefig("Graficas/fig0.jpg")
+        plt.savefig("Graficas/fig0.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -262,17 +262,17 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca iPhone')
-        plt.savefig("Graficas/fig1.jpg")
+        plt.savefig("Graficas/fig1.png")
         plt.close()    
             
         labels = 'Like', 'Dislike'
-        sizes = [mcdonals, contador - mcdonals]
+        sizes = [mcdonalds, contador - mcdonalds]
         colors = ['blue', 'orange']
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
-        plt.title(u"Marca McDonal's")
-        plt.savefig("Graficas/fig2.jpg")
+        plt.title(u"Marca McDonald's")
+        plt.savefig("Graficas/fig2.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -282,7 +282,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Caca-Cola')
-        plt.savefig("Graficas/fig3.jpg")
+        plt.savefig("Graficas/fig3.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -292,7 +292,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Yogurt')
-        plt.savefig("Graficas/fig4.jpg")
+        plt.savefig("Graficas/fig4.png")
         plt.close()
     def mostrar(self, btns):
         img=Popup(size_hint=(.6, 0.6), pos_hint={'x': 0.2, 'top': 0.75}, title="", separator_height=0)
@@ -301,8 +301,6 @@ class Estadisticas(Screen):
         img.add_widget(bl)
         img.open()
         
-
-
 estadis = Estadisticas()
 estadis.actualizar()
 
@@ -323,7 +321,7 @@ class Personas(Screen):
                 nlikes=nlikes+1
         labels="like", "Dislike"
         plt.pie([nlikes, len(likesitos)-nlikes], labels=labels, autopct='%1.1f%%', shadow=True, startangle=130)
-        plt.savefig("mostranding.jpg")
+        plt.savefig("mostranding.png")
         plt.close()
         img=Popup(size_hint=(.6, .6), pos_hint={'x': 0.2, 'top': 0.85}, title="", separator_height=0)
         bl=BoxLayout(orientation='vertical', space=5)
@@ -333,7 +331,7 @@ class Personas(Screen):
         bl.add_widget(Label(text="Genero:"+persona[3], size_hint=(1, .05), halign='left'))
         bl2=BoxLayout(orientation='horizontal', cols=2)
         bl2.add_widget(Label(text="Resultados por imagenes:\n1: "+likesitos[0]+"\n2: "+likesitos[1]+"\n3: "+likesitos[2]+"\n4: "+likesitos[3]+"\n5: "+likesitos[4]))
-        bl2.add_widget(Button(background_normal='mostranding.jpg', size_hint=(1, .7)))
+        bl2.add_widget(Button(background_normal='mostranding.png', size_hint=(1, .7)))
         bl.add_widget(bl2)
         img.add_widget(bl)
         img.open()
