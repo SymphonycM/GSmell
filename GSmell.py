@@ -135,7 +135,7 @@ class Estadisticas(Screen):
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
-        plt.title(u"Marca McDonal's")
+        plt.title(u"Marca McDonald's")
         plt.savefig("Graficas/fig2.png")
         plt.close()
 
@@ -202,7 +202,7 @@ class Estadisticas(Screen):
         plt.pie(sizes, labels=labels, colors=colors,
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
-        plt.title(u"Marca McDonal's")
+        plt.title(u"Marca McDonals's")
         plt.savefig("Graficas/fig2.png")
         plt.close()
 
