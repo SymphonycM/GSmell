@@ -119,7 +119,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Dove')
-        plt.savefig("Graficas/fig0.jpg")
+        plt.savefig("Graficas/fig0.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -129,7 +129,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca iPhone')
-        plt.savefig("Graficas/fig1.jpg")
+        plt.savefig("Graficas/fig1.png")
         plt.close()    
             
         labels = 'Like', 'Dislike'
@@ -139,7 +139,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u"Marca McDonal's")
-        plt.savefig("Graficas/fig2.jpg")
+        plt.savefig("Graficas/fig2.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -149,7 +149,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Caca-Cola')
-        plt.savefig("Graficas/fig3.jpg")
+        plt.savefig("Graficas/fig3.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -159,7 +159,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Yogurt')
-        plt.savefig("Graficas/fig4.jpg")
+        plt.savefig("Graficas/fig4.png")
         plt.close()
     def drop_down_list_gen(self, value):
         generoPer = personasDB.find({"Genero": value})
@@ -186,7 +186,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Dove')
-        plt.savefig("Graficas/fig0.jpg")
+        plt.savefig("Graficas/fig0.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -196,7 +196,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca iPhone')
-        plt.savefig("Graficas/fig1.jpg")
+        plt.savefig("Graficas/fig1.png")
         plt.close()    
             
         labels = 'Like', 'Dislike'
@@ -206,7 +206,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u"Marca McDonal's")
-        plt.savefig("Graficas/fig2.jpg")
+        plt.savefig("Graficas/fig2.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -216,7 +216,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Caca-Cola')
-        plt.savefig("Graficas/fig3.jpg")
+        plt.savefig("Graficas/fig3.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -226,7 +226,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Yogurt')
-        plt.savefig("Graficas/fig4.jpg")
+        plt.savefig("Graficas/fig4.png")
         plt.close()
     def drop_down_list_ran(self, value):
         personas = []
@@ -260,7 +260,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Dove')
-        plt.savefig("Graficas/fig0.jpg")
+        plt.savefig("Graficas/fig0.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -270,7 +270,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca iPhone')
-        plt.savefig("Graficas/fig1.jpg")
+        plt.savefig("Graficas/fig1.png")
         plt.close()    
             
         labels = 'Like', 'Dislike'
@@ -280,7 +280,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u"Marca McDonal's")
-        plt.savefig("Graficas/fig2.jpg")
+        plt.savefig("Graficas/fig2.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -290,7 +290,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Caca-Cola')
-        plt.savefig("Graficas/fig3.jpg")
+        plt.savefig("Graficas/fig3.png")
         plt.close()
 
         labels = 'Like', 'Dislike'
@@ -300,7 +300,7 @@ class Estadisticas(Screen):
                 autopct='%1.1f%%', shadow=True, startangle=130)
         plt.axis('equal')
         plt.title(u'Marca Yogurt')
-        plt.savefig("Graficas/fig4.jpg")
+        plt.savefig("Graficas/fig4.png")
         plt.close()
     def mostrar(self, btns):
         img=Popup(size_hint=(.6, 0.6), pos_hint={'x': 0.2, 'top': 0.75}, title="", separator_height=0)
