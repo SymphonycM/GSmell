@@ -306,8 +306,6 @@ class Estadisticas(Screen):
         img.add_widget(bl)
         img.open()
         
-
-
 estadis = Estadisticas()
 estadis.actualizar()
 
@@ -338,7 +336,7 @@ class Personas(Screen):
         bl.add_widget(Label(text="Genero:"+persona[3], size_hint=(1, .05), halign='left'))
         bl2=BoxLayout(orientation='horizontal', cols=2)
         bl2.add_widget(Label(text="Resultados por imagenes:\n1: "+likesitos[0]+"\n2: "+likesitos[1]+"\n3: "+likesitos[2]+"\n4: "+likesitos[3]+"\n5: "+likesitos[4]))
-        bl2.add_widget(Button(background_normal='mostranding.jpg', size_hint=(1, .7)))
+        bl2.add_widget(Button(background_normal='mostranding.jpg', size_hint=(1, .7))) #Librería pillow
         bl.add_widget(bl2)
         img.add_widget(bl)
         img.open()
