@@ -5,6 +5,7 @@ import kivy
 import pymongo
 import graf as graficas
 import os
+import time
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
@@ -52,10 +53,6 @@ for doc in personasDB.find():
 
 for doc in personasDB.find():
     listaGenPer.append(doc["Genero"])
-
-
-
-
 
 class listadebotones(ListItemButton):
     pass
@@ -336,10 +333,12 @@ class Personas(Screen):
         bl.add_widget(Label(text="Genero:"+persona[3], size_hint=(1, .05), halign='left'))
         bl2=BoxLayout(orientation='horizontal', cols=2)
         bl2.add_widget(Label(text="Resultados por imagenes:\n1: "+likesitos[0]+"\n2: "+likesitos[1]+"\n3: "+likesitos[2]+"\n4: "+likesitos[3]+"\n5: "+likesitos[4]))
-        bl2.add_widget(Button(background_normal='mostranding.jpg', size_hint=(1, .7))) #Librería pillow
+        botoncito1=Button(background_normal='mostranding.jpg', size_hint=(1, .7))
+        bl2.add_widget(botoncito1)
         bl.add_widget(bl2)
         img.add_widget(bl)
         img.open()
+
     def crearPer(self):
         per = personasPopUp()
         per.open()
@@ -423,21 +422,6 @@ class Imagenes(Screen):
         img.add_widget(bl)
         img.open()
 
-class AromasPopUp(Popup):
-    def crearAr(self):
-        new_Ar={
-            "Nombre": self.ids.inputNombreA.text,
-        }
-        aromasDB.insert_one(new_Ar)
-        megaroot=App.get_running_app()
-        megaroot.root.children[0].children[0].children[0].children[0].actualizar_lista()
-    def confirmarAroma(self):
-        confirmarAr = confirmarArPop()
-        confirmarAr.open()
-
-class confirmarArPop(Popup):
-    pass
-
 class Sm(ScreenManager):
     pass
 
@@ -475,5 +459,10 @@ class GSmellApp(App):
         rooter=Ssm()
         return rooter
     
+
+
+
+
+
 if __name__=="__main__":
     GSmellApp().run()
